@@ -17,7 +17,7 @@ public class VentanaPrincipal extends JFrame {
 
 	private JPanel contentPane, panelNorte, panelCentro;
 	private JLabel lblTitulo;
-	private JButton btnStart, btnScores, btnQuit;
+	private JButton btnStart, btnEditor, btnScores, btnQuit;
 
 	/**
 	 * Launch the application.
@@ -40,7 +40,7 @@ public class VentanaPrincipal extends JFrame {
 	 */
 	public VentanaPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 452, 360);
+		setBounds(100, 100, 444, 384);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -60,12 +60,17 @@ public class VentanaPrincipal extends JFrame {
 		
 		btnStart = new JButton("Start");
 		btnStart.setFont(new Font("DialogInput", Font.BOLD, 20));
-		btnStart.setBounds(144, 34, 113, 43);
+		btnStart.setBounds(144, 36, 113, 43);
 		panelCentro.add(btnStart);
+		
+		btnEditor = new JButton("Editor");
+		btnEditor.setFont(new Font("DialogInput", Font.BOLD, 20));
+		btnEditor.setBounds(144, 90, 113, 36);
+		panelCentro.add(btnEditor);
 		
 		btnScores = new JButton("Scores");
 		btnScores.setFont(new Font("DialogInput", Font.BOLD, 20));
-		btnScores.setBounds(144, 94, 113, 42);
+		btnScores.setBounds(144, 137, 113, 42);
 		panelCentro.add(btnScores);
 		
 		btnQuit = new JButton("Quit");
@@ -75,7 +80,7 @@ public class VentanaPrincipal extends JFrame {
 			}
 		});
 		btnQuit.setFont(new Font("DialogInput", Font.BOLD, 20));
-		btnQuit.setBounds(144, 154, 113, 43);
+		btnQuit.setBounds(144, 190, 113, 43);
 		panelCentro.add(btnQuit);
 	}
 }
