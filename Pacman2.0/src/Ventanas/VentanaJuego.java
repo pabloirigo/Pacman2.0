@@ -3,10 +3,13 @@ package Ventanas;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
 
 public class VentanaJuego {
 
 	private JFrame frame;
+	private JPanel panelNorte, panelSur, panelCentro;
 
 	/**
 	 * Launch the application.
@@ -36,8 +39,17 @@ public class VentanaJuego {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 520, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		panelNorte = new JPanel();
+		frame.getContentPane().add(panelNorte, BorderLayout.NORTH);
+		
+		panelSur = new JPanel();
+		frame.getContentPane().add(panelSur, BorderLayout.SOUTH);
+		
+		panelCentro = new JPanel();
+		frame.getContentPane().add(panelCentro, BorderLayout.CENTER);
 	}
 
 }
