@@ -67,7 +67,7 @@ public class BD {
 		conectar();
 	}
 	
-	/*public ArrayList<String> obtenerFotos(){
+	public ArrayList<String> obtenerFotos(){
 		ArrayList<String> aFotos = new ArrayList<String>();
 		
 		String query="SELECT RutaFoto FROM componentes";
@@ -82,6 +82,6 @@ public class BD {
 			e.printStackTrace();
 		}
 		return aFotos;
-	}*/
+	}
 
 }

@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import BasesDeDatos.BD;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -18,6 +21,7 @@ public class VentanaPrincipal extends JFrame {
 	private JPanel contentPane, panelNorte, panelCentro;
 	private JLabel lblTitulo;
 	private JButton btnStart, btnEditor, btnScores, btnQuit;
+	public static BD bd;
 
 	/**
 	 * Launch the application.
@@ -39,6 +43,9 @@ public class VentanaPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaPrincipal() {
+		
+		bd = new BD();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 444, 384);
 		contentPane = new JPanel();

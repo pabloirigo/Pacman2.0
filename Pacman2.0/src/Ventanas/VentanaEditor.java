@@ -7,10 +7,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 public class VentanaEditor extends JFrame {
 
 	private JPanel contentPane, panelNorte, panelSur, panelCentro;
+	public ArrayList<String> aFotos;
 
 	/**
 	 * Launch the application.
@@ -32,6 +34,9 @@ public class VentanaEditor extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaEditor() {
+		
+		aFotos = VentanaPrincipal.bd.obtenerFotos();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 520, 500);
 		contentPane = new JPanel();
