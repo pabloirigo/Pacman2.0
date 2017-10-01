@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import BasesDeDatos.BD;
+import BaseDeDatos.BD;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -71,6 +71,13 @@ public class VentanaPrincipal extends JFrame {
 		panelCentro.add(btnStart);
 		
 		btnEditor = new JButton("Editor");
+		btnEditor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaEditor ventEdit = new VentanaEditor();
+				ventEdit.setVisible(true);
+				dispose();
+			}
+		});
 		btnEditor.setFont(new Font("DialogInput", Font.BOLD, 20));
 		btnEditor.setBounds(144, 90, 113, 36);
 		panelCentro.add(btnEditor);
