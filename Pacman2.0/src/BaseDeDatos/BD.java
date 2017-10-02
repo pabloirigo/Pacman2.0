@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import TiposDeDatos.Usuario;
+
 public class BD {
 	
 	private Connection con;
@@ -82,6 +84,33 @@ public class BD {
 			e.printStackTrace();
 		}
 		return aFotos;
+	}
+	
+	public Usuario obtenerUsuario(String nombre){
+		String query;
+		Usuario u = null;
+		
+		query = "SELECT * FROM registrousuarios WHERE nombreUsuario='"+ nombre +"'";
+		try {
+			ResultSet rs = stmt.executeQuery(query);
+			if(rs.next())
+				u = new Usuario(rs.getString("nombreUsuario"), rs.getString("contrasenia"));
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return u;		
+	}
+	
+	public void insertarNuevoUsuario (Usuario u){
+		String query = "INSERT INTO registrousuarios (nombreUsuario,contrasenia) VALUES ('"+u.getNombre()+"','"+u.getContrasenia()+")";
+		try {
+			stmt.executeUpdate(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
