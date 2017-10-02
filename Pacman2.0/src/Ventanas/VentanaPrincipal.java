@@ -83,14 +83,14 @@ public class VentanaPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				VentanaEditor ventEdit = new VentanaEditor();
 				ventEdit.setVisible(true);
-				dispose();
+				VentanaPrincipal.this.dispose();
 			}
 		});
 		btnEditor.setFont(new Font("DialogInput", Font.BOLD, 20));
 		btnEditor.setBounds(130, 83, 130, 36);
 		panelCentro.add(btnEditor);
 		
-		btnScores = new JButton("Scores");
+		btnScores = new JButton("Scores");	
 		btnScores.setFont(new Font("DialogInput", Font.BOLD, 20));
 		btnScores.setBounds(130, 130, 130, 36);
 		panelCentro.add(btnScores);
@@ -105,7 +105,7 @@ public class VentanaPrincipal extends JFrame {
 		btnQuit.setBounds(130, 177, 130, 36);
 		panelCentro.add(btnQuit);
 		
-		btnIniciarSesion = new JButton("Iniciar Sesi\u00F3n");
+		btnIniciarSesion = new JButton("Iniciar Sesion");
 		btnIniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!sesionIniciada) {
@@ -182,7 +182,7 @@ public class VentanaPrincipal extends JFrame {
 		panelCentro.add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
-		lblContrasenia = new JLabel("Contrase\u00F1a:");
+		lblContrasenia = new JLabel("Contraseña:");
 		lblContrasenia.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblContrasenia.setBounds(40, 289, 90, 26);
 		panelCentro.add(lblContrasenia);

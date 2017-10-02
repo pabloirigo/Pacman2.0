@@ -15,13 +15,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
 public class VentanaEditor extends JFrame implements MouseListener{
 
 	private JPanel contentPane, panelNorte, panelSur, panelCentro;
 	public ArrayList<String> aFotos;
-	private JButton btnFondo, btnPared, btnPacman, btnFantasma, btnGuardarNivel, btnVolver;
+	private JButton btnFondo, btnPared, btnPacman, btnGuardarNivel, btnVolver;
 	private String descripcion;
+	private JComboBox comboBox;
 	
 	private void inicializarConFondo(){
 		for(int i=0;i<32;i++){
@@ -83,9 +85,12 @@ public class VentanaEditor extends JFrame implements MouseListener{
 		btnPacman = new JButton("Pacman");
 		panelSur.add(btnPacman);
 		
-		btnFantasma = new JButton("Fant.");
-		panelSur.add(btnFantasma);
-		
+		comboBox  = new JComboBox();
+		panelSur.add(comboBox);
+		comboBox.addItem("Clyde");
+		comboBox.addItem("Blinky");
+		comboBox.addItem("Pinky");
+		comboBox.addItem("Inky");
 		btnGuardarNivel = new JButton("Guard.Nivel");
 		panelSur.add(btnGuardarNivel);
 		
