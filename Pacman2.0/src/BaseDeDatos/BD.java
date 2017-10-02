@@ -104,7 +104,7 @@ public class BD {
 	}
 	
 	public void insertarNuevoUsuario (Usuario u){
-		String query = "INSERT INTO registrousuarios (nombreUsuario,contrasenia) VALUES ('"+u.getNombre()+"','"+u.getContrasenia()+")";
+		String query = "INSERT INTO registrousuarios (nombreUsuario,contrasenia) VALUES ('"+u.getNombreUsuario()+"','"+u.getContrasenia()+")";
 		try {
 			stmt.executeUpdate(query);
 		} catch (SQLException e) {

@@ -157,12 +157,12 @@ public class VentanaPrincipal extends JFrame {
 						JOptionPane.showMessageDialog(null, "Ese usuario ya está registrado", "ERROR!",
 								JOptionPane.ERROR_MESSAGE);
 					else {
-						//No Funcioa
-						/**u = new Usuario(txtUsuario.getText(), txtContrasenia.getText());
+						//No Funciona, el problema esta en insertarNuevoUsuario().
+						u = new Usuario(txtUsuario.getText(), txtContrasenia.getText());
 						bd.insertarNuevoUsuario(u);
 						JOptionPane.showMessageDialog(null, "Usuario registrado con éxito", "CORRECTO!",
 								JOptionPane.INFORMATION_MESSAGE);
-						deshabilitarCampos();*/
+						deshabilitarCampos();
 					}
 				}
 			}

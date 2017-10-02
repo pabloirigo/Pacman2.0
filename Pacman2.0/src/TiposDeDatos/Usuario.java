@@ -4,23 +4,23 @@ import java.io.Serializable;
 
 public class Usuario implements Serializable{
 	
-	private String nombre;
+	private String nombreUsuario;
 	private String contrasenia;
 	
-	public Usuario(String nombre, String contrasenia) {
-		this.nombre = nombre;
+	public Usuario(String nombreUsuario, String contrasenia) {
+		this.nombreUsuario = nombreUsuario;
 		this.contrasenia = contrasenia;
 	}
 	
 	public Usuario(){
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getNombreUsuario() {
+		return nombreUsuario;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
 	}
 
 	public String getContrasenia() {
@@ -33,7 +33,7 @@ public class Usuario implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "Usuario [nombre=" + nombre + ", contrasenia=" + contrasenia + "]";
+		return "Usuario [nombreUsuario=" + nombreUsuario + ", contrasenia=" + contrasenia + "]";
 	}
 	
 }
