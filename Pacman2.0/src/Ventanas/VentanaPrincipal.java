@@ -157,8 +157,9 @@ public class VentanaPrincipal extends JFrame {
 						JOptionPane.showMessageDialog(null, "Ese usuario ya está registrado", "ERROR!",
 								JOptionPane.ERROR_MESSAGE);
 					else {
-						//No Funciona, el problema esta en insertarNuevoUsuario().
+						//No Funciona, el problema esta en insertarNuevoUsuario(), en el executeUpdate.
 						u = new Usuario(txtUsuario.getText(), txtContrasenia.getText());
+						System.out.println(u.getNombreUsuario()+", "+u.getContrasenia());
 						bd.insertarNuevoUsuario(u);
 						JOptionPane.showMessageDialog(null, "Usuario registrado con éxito", "CORRECTO!",
 								JOptionPane.INFORMATION_MESSAGE);
@@ -209,4 +210,6 @@ public class VentanaPrincipal extends JFrame {
 		txtUsuario.setEnabled(false);
 		txtContrasenia.setEnabled(false);
 	}
+	
+	/**Esto es una puta mierda y no funciona.*/
 }
