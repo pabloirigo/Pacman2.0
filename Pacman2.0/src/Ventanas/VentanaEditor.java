@@ -55,6 +55,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 	 * Create the frame.
 	 */
 	public VentanaEditor() {
+		setAlwaysOnTop(true);
 
 		aFotos = VentanaPrincipal.bd.obtenerFotos();
 

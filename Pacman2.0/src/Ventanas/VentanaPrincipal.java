@@ -1,6 +1,7 @@
 package Ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -14,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Toolkit;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -34,12 +37,15 @@ public class VentanaPrincipal extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+		
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					VentanaPrincipal frame = new VentanaPrincipal();
-					frame.setVisible(true);
+				     frame.setLocationRelativeTo(null);	
+				     frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -75,7 +81,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		btnStart = new JButton("Start");
 		btnStart.setFont(new Font("DialogInput", Font.BOLD, 20));
-		btnStart.setBounds(130, 36, 130, 36);
+		btnStart.setBounds(130, 35, 130, 36);
 		panelCentro.add(btnStart);
 		
 		btnEditor = new JButton("Editor");
