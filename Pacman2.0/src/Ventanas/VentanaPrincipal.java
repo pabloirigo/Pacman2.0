@@ -28,7 +28,7 @@ public class VentanaPrincipal extends JFrame {
 
 	private JPanel contentPane, panelNorte, panelCentro;
 	private JLabel lblTitulo, lblUsuario, lblContrasenia;
-	private JButton btnStart, btnEditor, btnScores, btnQuit, btnIniciarSesion, btnRegistrarse;
+	private JButton btnLevel, btnEditor, btnScores, btnQuit, btnIniciarSesion, btnRegistrarse;
 	public static BD bd;
 	private JTextField txtUsuario;
 	private JPasswordField txtContrasenia;
@@ -79,10 +79,15 @@ public class VentanaPrincipal extends JFrame {
 		contentPane.add(panelCentro, BorderLayout.CENTER);
 		panelCentro.setLayout(null);
 		
-		btnStart = new JButton("Start");
-		btnStart.setFont(new Font("DialogInput", Font.BOLD, 20));
-		btnStart.setBounds(130, 35, 130, 36);
-		panelCentro.add(btnStart);
+		btnLevel = new JButton("Level");
+		btnLevel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnLevel.setFont(new Font("DialogInput", Font.BOLD, 20));
+		btnLevel.setBounds(130, 35, 130, 36);
+		panelCentro.add(btnLevel);
 		
 		btnEditor = new JButton("Editor");
 		btnEditor.addActionListener(new ActionListener() {

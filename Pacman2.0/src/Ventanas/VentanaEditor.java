@@ -89,6 +89,11 @@ public class VentanaEditor extends JFrame implements MouseListener {
 		panelSur.add(btnFondo);
 
 		btnPacman = new JButton("Pacman");
+		btnPacman.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				descripcion = "Pacman";
+			}
+		});
 		panelSur.add(btnPacman);
 
 		comboBox = new JComboBox<String>();
@@ -167,6 +172,10 @@ public class VentanaEditor extends JFrame implements MouseListener {
 			} else if (descripcion.equals("Fondo")) {
 				ImageIcon im = new ImageIcon("Imagenes\\Fondo.png");
 				im.setDescription("Imagenes\\Fondo.png");
+				lblFoto.setIcon(im);
+			} else if (descripcion.equals("Pacman")){
+				ImageIcon im = new ImageIcon("Imagenes\\Pacman.png");
+				im.setDescription("Imagenes\\Pacman.png");
 				lblFoto.setIcon(im);
 			}
 			panelCentro.updateUI();
