@@ -83,7 +83,7 @@ public class VentanaPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				VentanaEditor ventEdit = new VentanaEditor();
 				ventEdit.setVisible(true);
-				VentanaPrincipal.this.dispose();
+				dispose();
 			}
 		});
 		btnEditor.setFont(new Font("DialogInput", Font.BOLD, 20));
@@ -159,7 +159,6 @@ public class VentanaPrincipal extends JFrame {
 					else {
 						//No Funciona, el problema esta en insertarNuevoUsuario(), en el executeUpdate.
 						u = new Usuario(txtUsuario.getText(), txtContrasenia.getText());
-						System.out.println(u.getNombreUsuario()+", "+u.getContrasenia());
 						bd.insertarNuevoUsuario(u);
 						JOptionPane.showMessageDialog(null, "Usuario registrado con éxito", "CORRECTO!",
 								JOptionPane.INFORMATION_MESSAGE);
