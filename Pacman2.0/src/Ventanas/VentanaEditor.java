@@ -137,6 +137,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VentanaPrincipal ventPrin = new VentanaPrincipal();
+				//ventPrin.setLocationRelativeTo(null);
 				ventPrin.setVisible(true);
 				dispose();
 			}

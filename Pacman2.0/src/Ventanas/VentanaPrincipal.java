@@ -44,7 +44,7 @@ public class VentanaPrincipal extends JFrame {
 			public void run() {
 				try {
 					VentanaPrincipal frame = new VentanaPrincipal();
-				     frame.setLocationRelativeTo(null);	
+				     //frame.setLocationRelativeTo(null);	
 				     frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -88,6 +88,7 @@ public class VentanaPrincipal extends JFrame {
 		btnEditor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VentanaEditor ventEdit = new VentanaEditor();
+				//ventEdit.setLocationRelativeTo(null);
 				ventEdit.setVisible(true);
 				dispose();
 			}
@@ -159,11 +160,9 @@ public class VentanaPrincipal extends JFrame {
 				} else {
 					Usuario u = bd.obtenerUsuario(txtUsuario.getText());
 					if (u != null)
-						//Funciona
 						JOptionPane.showMessageDialog(null, "Ese usuario ya está registrado", "ERROR!",
 								JOptionPane.ERROR_MESSAGE);
 					else {
-						//No Funciona, el problema esta en insertarNuevoUsuario(), en el executeUpdate.
 						u = new Usuario(txtUsuario.getText(), txtContrasenia.getText());
 						bd.insertarNuevoUsuario(u);
 						JOptionPane.showMessageDialog(null, "Usuario registrado con éxito", "CORRECTO!",
@@ -216,5 +215,4 @@ public class VentanaPrincipal extends JFrame {
 		txtContrasenia.setEnabled(false);
 	}
 	
-	/**Esto es una puta mierda y no funciona.*/
 }
