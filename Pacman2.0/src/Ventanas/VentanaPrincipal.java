@@ -38,16 +38,13 @@ public class VentanaPrincipal extends JFrame {
 	private JPasswordField txtContrasenia;
 	private boolean sesionIniciada = false;
 
-	/**
-	 * Launch the application.
-	 */
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					VentanaPrincipal frame = new VentanaPrincipal();
-					// frame.setLocationRelativeTo(null);
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -132,7 +129,7 @@ public class VentanaPrincipal extends JFrame {
 		btnEditor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VentanaEditor ventEdit = new VentanaEditor();
-				// ventEdit.setLocationRelativeTo(null);
+				ventEdit.setLocationRelativeTo(null);
 				ventEdit.setVisible(true);
 				dispose();
 			}
