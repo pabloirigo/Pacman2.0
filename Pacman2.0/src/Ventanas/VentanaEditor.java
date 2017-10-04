@@ -99,7 +99,15 @@ public class VentanaEditor extends JFrame implements MouseListener {
 		comboBox.addItem("Inky");
 		comboBox.addItem("Pinky");
 		comboBox.addItem("Clyde");
-
+		comboBox.addActionListener(new ActionListener() { 
+		
+			public void actionPerformed(ActionEvent e) {
+				String fantasmaSeleccion = (String) comboBox.getSelectedItem();
+				descripcion = fantasmaSeleccion;
+			
+	
+		}
+		});
 		btnGuardarNivel = new JButton("Guard.Nivel");
 		btnGuardarNivel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -158,42 +166,66 @@ public class VentanaEditor extends JFrame implements MouseListener {
 
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-
 		Point p = e.getPoint();
-		if (panelCentro.getComponentAt(p) instanceof JLabel) {
-			JLabel lblFoto = (JLabel) panelCentro.getComponentAt(p);
-			if (descripcion.equals("Pared")) {
-				ImageIcon im = new ImageIcon("Imagenes\\Pared.png");
-				im.setDescription("Imagenes\\Pared.png");
-				lblFoto.setIcon(im);
-			} else if (descripcion.equals("Fondo")) {
-				ImageIcon im = new ImageIcon("Imagenes\\Fondo.png");
-				im.setDescription("Imagenes\\Fondo.png");
-				lblFoto.setIcon(im);
-			} else if (descripcion.equals("Pacman")){
-				ImageIcon im = new ImageIcon("Imagenes\\Pacman.png");
-				im.setDescription("Imagenes\\Pacman.png");
-				lblFoto.setIcon(im);
-			}
-			panelCentro.updateUI();
+		JLabel lblFoto = (JLabel) panelCentro.getComponentAt(p);
+		switch(descripcion){
+		case "Pared": {
+			ImageIcon im = new ImageIcon("Imagenes\\Pared.png");
+			im.setDescription("Imagenes\\Pared.png");
+			lblFoto.setIcon(im);	
+			break;
+		}
+		case "Fondo":{
+			ImageIcon im = new ImageIcon("Imagenes\\Fondo.png");
+			im.setDescription("Imagenes\\Fondo.png");
+			lblFoto.setIcon(im);
+			break;
+		}
+		case"Pacman":{
+			ImageIcon im = new ImageIcon("Imagenes\\Pacman.png");
+			im.setDescription("Imagenes\\Pacman.png");
+			lblFoto.setIcon(im);
+			break;
+
+		}
+		case"Inky":{
+			ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
+			im.setDescription("Imagenes\\fantasmaAzul.png");
+			lblFoto.setIcon(im);
+			comboBox.removeItem("Inky");
+			break;
+
+		}
+		case"Pinky":{
+			ImageIcon im = new ImageIcon("Imagenes\\FantasmaRosa.png");
+			im.setDescription("Imagenes\\FantasmaRosa.png");
+			lblFoto.setIcon(im);
+			comboBox.removeItem("Pinky");
+			break;
+
+		}
+		case"Blinky":{
+			ImageIcon im = new ImageIcon("Imagenes\\FantasmaRojo.png");
+			im.setDescription("Imagenes\\FantasmaRojo.png");
+			lblFoto.setIcon(im);
+			comboBox.removeItem("Blinky");
+			break;
+
+		}
+		case"Clyde":{
+			ImageIcon im = new ImageIcon("Imagenes\\FantasmaNaranja.png");
+			im.setDescription("Imagenes\\FantasmaNaranja.png");
+			lblFoto.setIcon(im);
+			comboBox.removeItem("Clyde");
+			break;
+
+		}
 		}
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		Point p = e.getPoint();
-		if (panelCentro.getComponentAt(p) instanceof JLabel) {
-			JLabel lblFoto = (JLabel) panelCentro.getComponentAt(p);
-
-			if (descripcion.equals("Pared"))
-				lblFoto.setIcon(new ImageIcon("Imagenes\\Pared.png"));
-
-			else if (descripcion.equals("Fondo"))
-				lblFoto.setIcon(new ImageIcon("Imagenes\\Fondo.png"));
-
-			panelCentro.updateUI();
-		}
 	}
 
 	@Override
