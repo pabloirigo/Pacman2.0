@@ -18,7 +18,13 @@ import java.awt.Font;
 import java.awt.Toolkit;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
 import javax.swing.JTextField;
@@ -37,15 +43,14 @@ public class VentanaPrincipal extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-		
-	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					VentanaPrincipal frame = new VentanaPrincipal();
-				     //frame.setLocationRelativeTo(null);	
-				     frame.setVisible(true);
+					// frame.setLocationRelativeTo(null);
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -57,43 +62,76 @@ public class VentanaPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaPrincipal() {
-		
+
 		bd = new BD();
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+
 		panelNorte = new JPanel();
 		contentPane.add(panelNorte, BorderLayout.NORTH);
 		panelNorte.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
+
 		lblTitulo = new JLabel("Pacman 2.0");
 		lblTitulo.setFont(new Font("DialogInput", Font.BOLD, 38));
 		panelNorte.add(lblTitulo);
-		
+
 		panelCentro = new JPanel();
 		contentPane.add(panelCentro, BorderLayout.CENTER);
 		panelCentro.setLayout(null);
-		
+
+		JFrame ventanaPrin = this;
 		btnLevel = new JButton("Level");
 		btnLevel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				JFileChooser fc = new JFileChooser("Niveles");
+				int result = fc.showOpenDialog(ventanaPrin);
+				if (result == JFileChooser.APPROVE_OPTION) {
+					FileInputStream fis;
+					try {
+						fis = new FileInputStream(fc.getSelectedFile());
+						ObjectInputStream ois = new ObjectInputStream(fis);
+						Object aBi[][] = new Object[32][32];
+						JLabel label = (JLabel) ois.readObject();
+						int i = 0, j = 0;
+						while (label != null) {
+							aBi[i][j] = label;
+							j++;
+							if (j == 32) {
+								i++;
+								j = 0;
+							}
+							label = (JLabel) ois.readObject();
+						}
+						ois.close();
+						VentanaNivel ventNivel = new VentanaNivel(aBi);
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IOException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					} catch (ClassNotFoundException e3) {
+						// TODO Auto-generated catch block
+						e3.printStackTrace();
+					}
+
+				}
 			}
 		});
 		btnLevel.setFont(new Font("DialogInput", Font.BOLD, 20));
 		btnLevel.setBounds(130, 35, 130, 36);
 		panelCentro.add(btnLevel);
-		
+
 		btnEditor = new JButton("Editor");
 		btnEditor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VentanaEditor ventEdit = new VentanaEditor();
-				//ventEdit.setLocationRelativeTo(null);
+				// ventEdit.setLocationRelativeTo(null);
 				ventEdit.setVisible(true);
 				dispose();
 			}
@@ -101,12 +139,12 @@ public class VentanaPrincipal extends JFrame {
 		btnEditor.setFont(new Font("DialogInput", Font.BOLD, 20));
 		btnEditor.setBounds(130, 83, 130, 36);
 		panelCentro.add(btnEditor);
-		
-		btnScores = new JButton("Scores");	
+
+		btnScores = new JButton("Scores");
 		btnScores.setFont(new Font("DialogInput", Font.BOLD, 20));
 		btnScores.setBounds(130, 130, 130, 36);
 		panelCentro.add(btnScores);
-		
+
 		btnQuit = new JButton("Quit");
 		btnQuit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -116,7 +154,7 @@ public class VentanaPrincipal extends JFrame {
 		btnQuit.setFont(new Font("DialogInput", Font.BOLD, 20));
 		btnQuit.setBounds(130, 177, 130, 36);
 		panelCentro.add(btnQuit);
-		
+
 		btnIniciarSesion = new JButton("Iniciar Sesion");
 		btnIniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -154,7 +192,7 @@ public class VentanaPrincipal extends JFrame {
 		});
 		btnIniciarSesion.setBounds(268, 265, 123, 23);
 		panelCentro.add(btnIniciarSesion);
-		
+
 		btnRegistrarse = new JButton("Registrarse");
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -180,44 +218,44 @@ public class VentanaPrincipal extends JFrame {
 		btnRegistrarse.setBounds(268, 293, 123, 23);
 		panelCentro.add(btnRegistrarse);
 		btnRegistrarse.setVisible(false);
-		
+
 		lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblUsuario.setBounds(40, 261, 90, 26);
 		panelCentro.add(lblUsuario);
-		
+
 		txtUsuario = new JTextField();
 		txtUsuario.setBounds(140, 266, 108, 20);
 		panelCentro.add(txtUsuario);
 		txtUsuario.setColumns(10);
-		
+
 		lblContrasenia = new JLabel("Contraseña:");
 		lblContrasenia.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblContrasenia.setBounds(40, 289, 90, 26);
 		panelCentro.add(lblContrasenia);
-		
+
 		txtContrasenia = new JPasswordField();
 		txtContrasenia.setBounds(140, 294, 108, 20);
 		panelCentro.add(txtContrasenia);
-		
+
 	}
-	
+
 	private void limpiarCampoUsuario() {
 		txtUsuario.setText("");
 	}
-	
-	private void limpiarCampoContrasenia(){
+
+	private void limpiarCampoContrasenia() {
 		txtContrasenia.setText("");
 	}
-	
-	private void habilitarCampos(){
+
+	private void habilitarCampos() {
 		txtUsuario.setEnabled(true);
 		txtContrasenia.setEnabled(true);
 	}
-	
-	private void deshabilitarCampos(){
+
+	private void deshabilitarCampos() {
 		txtUsuario.setEnabled(false);
 		txtContrasenia.setEnabled(false);
 	}
-	
+
 }
