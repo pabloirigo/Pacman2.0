@@ -1,9 +1,6 @@
 package Ventanas;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -12,6 +9,7 @@ import java.awt.GridLayout;
 
 public class VentanaNivel extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane, panelNorte, panelSur, panelCentro;
 	public static Object aBi[][];
 	public int columnas, filas;
@@ -21,7 +19,7 @@ public class VentanaNivel extends JFrame {
 	 */
 	public VentanaNivel(Object aBi[][]) {
 
-		this.aBi = aBi;
+		VentanaNivel.aBi = aBi;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 650);
@@ -42,7 +40,7 @@ public class VentanaNivel extends JFrame {
 		for (int i = 0; i < aBi.length; i++) {
 			for (int j = 0; j < aBi[0].length; j++) {
 				panelCentro.add((JLabel) aBi[i][j]);
-				System.out.println(((ImageIcon) ((JLabel) aBi[i][j]).getIcon()).getDescription());
+				//System.out.println(((ImageIcon) ((JLabel) aBi[i][j]).getIcon()).getDescription());
 			}
 			setVisible(true);
 		}

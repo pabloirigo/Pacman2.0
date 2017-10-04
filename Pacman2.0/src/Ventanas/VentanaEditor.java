@@ -25,6 +25,7 @@ import javax.swing.JComboBox;
 
 public class VentanaEditor extends JFrame implements MouseListener {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane, panelNorte, panelSur, panelCentro;
 	public ArrayList<String> aFotos;
 	private JButton btnFondo, btnPared, btnPacman, btnGuardarNivel, btnVolver;
@@ -42,18 +43,15 @@ public class VentanaEditor extends JFrame implements MouseListener {
 		}
 	}
 
-	private void cargarFotos() {
+	/*private void cargarFotos() {
 		for (String ruta : aFotos) {
 			ImageIcon im = new ImageIcon(ruta);
 			im.setDescription(ruta);
 			JLabel lblFoto = new JLabel(im);
 			panelCentro.add(lblFoto);
 		}
-	}
+	}*/
 
-	/**
-	 * Create the frame.
-	 */
 	public VentanaEditor() {
 		setAlwaysOnTop(true);
 

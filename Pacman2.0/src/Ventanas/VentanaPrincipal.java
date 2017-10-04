@@ -1,7 +1,6 @@
 package Ventanas;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -15,8 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
-import java.awt.Toolkit;
-
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 
@@ -32,6 +29,7 @@ import javax.swing.JPasswordField;
 
 public class VentanaPrincipal extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane, panelNorte, panelCentro;
 	private JLabel lblTitulo, lblUsuario, lblContrasenia;
 	private JButton btnLevel, btnEditor, btnScores, btnQuit, btnIniciarSesion, btnRegistrarse;
@@ -89,8 +87,8 @@ public class VentanaPrincipal extends JFrame {
 		btnLevel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser fc = new JFileChooser("Niveles");
-				int result = fc.showOpenDialog(ventanaPrin);
-				if (result == JFileChooser.APPROVE_OPTION) {
+				int resultado = fc.showOpenDialog(ventanaPrin);
+				if (resultado == JFileChooser.APPROVE_OPTION) {
 					FileInputStream fis;
 					try {
 						fis = new FileInputStream(fc.getSelectedFile());
@@ -109,6 +107,9 @@ public class VentanaPrincipal extends JFrame {
 						}
 						ois.close();
 						VentanaNivel ventNivel = new VentanaNivel(aBi);
+						ventNivel.setLocationRelativeTo(null);
+						ventanaPrin.dispose();
+						
 					} catch (FileNotFoundException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -160,6 +161,7 @@ public class VentanaPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (!sesionIniciada) {
 					String txtnom = txtUsuario.getText();
+					@SuppressWarnings("deprecation")
 					String txtcon = txtContrasenia.getText();
 					if (txtnom.equals("") || txtcon.equals("")) {
 						JOptionPane.showMessageDialog(null,
@@ -195,6 +197,7 @@ public class VentanaPrincipal extends JFrame {
 
 		btnRegistrarse = new JButton("Registrarse");
 		btnRegistrarse.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				if (txtUsuario.equals("") || txtContrasenia.equals("")) {
 					JOptionPane.showMessageDialog(null,
@@ -248,10 +251,10 @@ public class VentanaPrincipal extends JFrame {
 		txtContrasenia.setText("");
 	}
 
-	private void habilitarCampos() {
+	/*private void habilitarCampos() {
 		txtUsuario.setEnabled(true);
 		txtContrasenia.setEnabled(true);
-	}
+	}*/
 
 	private void deshabilitarCampos() {
 		txtUsuario.setEnabled(false);
