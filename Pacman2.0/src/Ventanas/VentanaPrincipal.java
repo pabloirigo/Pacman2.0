@@ -32,7 +32,7 @@ public class VentanaPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane, panelNorte, panelCentro;
 	private JLabel lblTitulo, lblUsuario, lblContrasenia;
-	private JButton btnLevel, btnEditor, btnScores, btnQuit, btnIniciarSesion, btnRegistrarse;
+	private JButton btnLevel, btnEditor, btnScores, btnQuit, btnIniciarSesion, btnRegistrarse, btnCerrarSesion;
 	public static BD bd;
 	private JTextField txtUsuario;
 	private JPasswordField txtContrasenia;
@@ -105,6 +105,7 @@ public class VentanaPrincipal extends JFrame {
 						ois.close();
 						VentanaNivel ventNivel = new VentanaNivel(aBi);
 						ventNivel.setLocationRelativeTo(null);
+						ventNivel.setVisible(true);
 						ventanaPrin.dispose();
 						
 					} catch (FileNotFoundException e1) {
@@ -152,87 +153,103 @@ public class VentanaPrincipal extends JFrame {
 		btnQuit.setFont(new Font("DialogInput", Font.BOLD, 20));
 		btnQuit.setBounds(130, 177, 130, 36);
 		panelCentro.add(btnQuit);
-
-		btnIniciarSesion = new JButton("Iniciar Sesion");
-		btnIniciarSesion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (!sesionIniciada) {
-					String txtnom = txtUsuario.getText();
-					@SuppressWarnings("deprecation")
-					String txtcon = txtContrasenia.getText();
-					if (txtnom.equals("") || txtcon.equals("")) {
-						JOptionPane.showMessageDialog(null,
-								"Para iniciar sesión tienes que insertar un nombre de usuario y una contraseña.",
-								"ERROR!", JOptionPane.ERROR_MESSAGE);
-						limpiarCampoUsuario();
-						limpiarCampoContrasenia();
-					} else {
-						Usuario u = bd.obtenerUsuario(txtnom);
-						if (u == null) {
-							JOptionPane.showMessageDialog(null, "Lo sentimos, el usuario no está registrado.", "ERROR!",
-									JOptionPane.ERROR_MESSAGE);
-							btnRegistrarse.setVisible(true);
-						} else if (!u.getContrasenia().equals(txtcon)) {
-							JOptionPane.showMessageDialog(null, "Lo sentimos, la contraseña no es correcta.", "ERROR!",
-									JOptionPane.ERROR_MESSAGE);
-							limpiarCampoContrasenia();
+		
+				btnIniciarSesion = new JButton("Iniciar Sesion");
+				btnIniciarSesion.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if (!sesionIniciada) {
+							String txtnom = txtUsuario.getText();
+							@SuppressWarnings("deprecation")
+							String txtcon = txtContrasenia.getText();
+							if (txtnom.equals("") || txtcon.equals("")) {
+								JOptionPane.showMessageDialog(null,
+										"Para iniciar sesión tienes que insertar un nombre de usuario y una contraseña.",
+										"ERROR!", JOptionPane.ERROR_MESSAGE);
+								limpiarCampoUsuario();
+								limpiarCampoContrasenia();
+							} else {
+								Usuario u = bd.obtenerUsuario(txtnom);
+								if (u == null) {
+									JOptionPane.showMessageDialog(null, "Lo sentimos, el usuario no está registrado.", "ERROR!",
+											JOptionPane.ERROR_MESSAGE);
+									btnRegistrarse.setVisible(true);
+								} else if (!u.getContrasenia().equals(txtcon)) {
+									JOptionPane.showMessageDialog(null, "Lo sentimos, la contraseña no es correcta.", "ERROR!",
+											JOptionPane.ERROR_MESSAGE);
+									limpiarCampoContrasenia();
+								} else {
+									JOptionPane.showMessageDialog(null, "Enhorabuena, ha iniciado sesión con exito.", "OK!",
+											JOptionPane.INFORMATION_MESSAGE);
+									sesionIniciada = true;
+									btnCerrarSesion.setVisible(true);
+									deshabilitarCampos();
+								}
+							}
 						} else {
-							JOptionPane.showMessageDialog(null, "Enhorabuena, ha iniciado sesión con exito.", "OK!",
-									JOptionPane.INFORMATION_MESSAGE);
-							sesionIniciada = true;
-							deshabilitarCampos();
+							JOptionPane.showMessageDialog(null, "Ya hay una sesión iniciada.", "ERROR!",
+									JOptionPane.ERROR_MESSAGE);
 						}
 					}
-				} else {
-					JOptionPane.showMessageDialog(null, "Ya hay una sesión iniciada.", "ERROR!",
-							JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
-		btnIniciarSesion.setBounds(268, 265, 123, 23);
-		panelCentro.add(btnIniciarSesion);
-
-		btnRegistrarse = new JButton("Registrarse");
-		btnRegistrarse.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
-			public void actionPerformed(ActionEvent e) {
-				if (txtUsuario.equals("") || txtContrasenia.equals("")) {
-					JOptionPane.showMessageDialog(null,
-							"Para iniciar sesión tienes que insertar un nombre de usuario y una contraseña.", "ERROR!",
-							JOptionPane.ERROR_MESSAGE);
-				} else {
-					Usuario u = bd.obtenerUsuario(txtUsuario.getText());
-					if (u != null)
-						JOptionPane.showMessageDialog(null, "Ese usuario ya está registrado", "ERROR!",
-								JOptionPane.ERROR_MESSAGE);
-					else {
-						u = new Usuario(txtUsuario.getText(), txtContrasenia.getText());
-						bd.insertarNuevoUsuario(u);
-						JOptionPane.showMessageDialog(null, "Usuario registrado con éxito", "CORRECTO!",
-								JOptionPane.INFORMATION_MESSAGE);
-						deshabilitarCampos();
+				});
+				btnIniciarSesion.setBounds(268, 265, 123, 23);
+				panelCentro.add(btnIniciarSesion);
+		
+				btnRegistrarse = new JButton("Registrarse");
+				btnRegistrarse.addActionListener(new ActionListener() {
+					@SuppressWarnings("deprecation")
+					public void actionPerformed(ActionEvent e) {
+						if (txtUsuario.equals("") || txtContrasenia.equals("")) {
+							JOptionPane.showMessageDialog(null,
+									"Para iniciar sesión tienes que insertar un nombre de usuario y una contraseña.", "ERROR!",
+									JOptionPane.ERROR_MESSAGE);
+						} else {
+							Usuario u = bd.obtenerUsuario(txtUsuario.getText());
+							if (u != null)
+								JOptionPane.showMessageDialog(null, "Ese usuario ya está registrado", "ERROR!",
+										JOptionPane.ERROR_MESSAGE);
+							else {
+								u = new Usuario(txtUsuario.getText(), txtContrasenia.getText());
+								bd.insertarNuevoUsuario(u);
+								JOptionPane.showMessageDialog(null, "Usuario registrado con éxito", "CORRECTO!",
+										JOptionPane.INFORMATION_MESSAGE);
+								deshabilitarCampos();
+							}
+						}
 					}
-				}
+				});
+				btnRegistrarse.setBounds(268, 293, 123, 23);
+				panelCentro.add(btnRegistrarse);
+				btnRegistrarse.setVisible(false);
+		
+		btnCerrarSesion = new JButton("Cerrar Sesion");
+		btnCerrarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(null, "Ha cerrado la sesión.", "OK!",
+						JOptionPane.INFORMATION_MESSAGE);
+				habilitarCampos();
+				limpiarCampoUsuario();
+				limpiarCampoContrasenia();
+				sesionIniciada = false;
 			}
 		});
-		btnRegistrarse.setBounds(268, 293, 123, 23);
-		panelCentro.add(btnRegistrarse);
-		btnRegistrarse.setVisible(false);
+		btnCerrarSesion.setBounds(268, 236, 123, 23);
+		panelCentro.add(btnCerrarSesion);
+		btnCerrarSesion.setVisible(false);
 
 		lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblUsuario.setBounds(40, 261, 90, 26);
 		panelCentro.add(lblUsuario);
-
-		txtUsuario = new JTextField();
-		txtUsuario.setBounds(140, 266, 108, 20);
-		panelCentro.add(txtUsuario);
-		txtUsuario.setColumns(10);
-
-		lblContrasenia = new JLabel("Contraseña:");
-		lblContrasenia.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblContrasenia.setBounds(40, 289, 90, 26);
-		panelCentro.add(lblContrasenia);
+				
+						txtUsuario = new JTextField();
+						txtUsuario.setBounds(140, 266, 108, 20);
+						panelCentro.add(txtUsuario);
+						txtUsuario.setColumns(10);
+		
+				lblContrasenia = new JLabel("Contraseña:");
+				lblContrasenia.setFont(new Font("Tahoma", Font.PLAIN, 16));
+				lblContrasenia.setBounds(40, 289, 90, 26);
+				panelCentro.add(lblContrasenia);
 
 		txtContrasenia = new JPasswordField();
 		txtContrasenia.setBounds(140, 294, 108, 20);
@@ -248,14 +265,13 @@ public class VentanaPrincipal extends JFrame {
 		txtContrasenia.setText("");
 	}
 
-	/*private void habilitarCampos() {
+	private void habilitarCampos() {
 		txtUsuario.setEnabled(true);
 		txtContrasenia.setEnabled(true);
-	}*/
+	}
 
 	private void deshabilitarCampos() {
 		txtUsuario.setEnabled(false);
 		txtContrasenia.setEnabled(false);
 	}
-
 }

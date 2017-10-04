@@ -29,7 +29,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 	private JPanel contentPane, panelNorte, panelSur, panelCentro;
 	public ArrayList<String> aFotos;
 	private JButton btnFondo, btnPared, btnPacman, btnGuardarNivel, btnVolver;
-	private String descripcion;
+	private String descripcion = "Pared";
 	private JComboBox<String> comboBox;
 
 	private void inicializarConFondo() {
@@ -53,7 +53,6 @@ public class VentanaEditor extends JFrame implements MouseListener {
 	}*/
 
 	public VentanaEditor() {
-		setAlwaysOnTop(true);
 
 		aFotos = VentanaPrincipal.bd.obtenerFotos();
 
