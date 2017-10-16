@@ -37,8 +37,8 @@ public class VentanaEditor extends JFrame implements MouseListener {
 	private ArrayList<String> fantasmas;
 
 	private void inicializarConFondo() {
-		for (int i = 0; i < 32; i++) {
-			for (int j = 0; j < 32; j++) {
+		for (int i = 0; i < 25; i++) {
+			for (int j = 0; j < 25; j++) {
 				ImageIcon im = new ImageIcon("Imagenes\\Fondo.png");
 				im.setDescription("Imagenes\\Fondo.png");
 				JLabel lblFoto = new JLabel(im);
@@ -81,7 +81,6 @@ public class VentanaEditor extends JFrame implements MouseListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				descripcion = "Pared";
-				
 			}
 		});
 		
@@ -168,7 +167,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 
 		panelCentro = new JPanel();
 		contentPane.add(panelCentro, BorderLayout.CENTER);
-		panelCentro.setLayout(new GridLayout(0, 32, 0, 0));
+		panelCentro.setLayout(new GridLayout(0, 25, 0, 0));
 		/*
 		 * Hay que añadir al panelCentro un listener para los eventos de raton.
 		 */
