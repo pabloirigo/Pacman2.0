@@ -269,6 +269,13 @@ public class VentanaEditor extends JFrame implements MouseListener {
 		}
 			break;
 		case "Fondo": {
+			/**sacar la descripcion del label donde estas clickando, si es igual a pacman significa que estas quitando
+			  el pacman. poner enable el boton pacman.
+			if(== "Pacman") {
+				tbtnPacman.setEnabled(true);
+				
+			}**/
+
 			restaurarFantasma(des);
 			ImageIcon im = new ImageIcon("Imagenes\\Fondo.png");
 			im.setDescription("Imagenes\\Fondo.png");
