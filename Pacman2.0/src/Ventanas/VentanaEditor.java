@@ -23,6 +23,7 @@ import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JToggleButton;
+import java.awt.Color;
 
 public class VentanaEditor extends JFrame implements MouseListener {
 
@@ -33,8 +34,10 @@ public class VentanaEditor extends JFrame implements MouseListener {
 	private String descripcion = "Pared";
 	private JComboBox<String> comboBox;
 	private Point puntoIni, puntoFin;
-	private JToggleButton tbtnPared, tbtnFondo, tbtnPacman;
+	private JButton btnPared, btnFondo, btnPacman;
 	private ArrayList<String> fantasmas;
+	private int contadorPacman = 0;
+	private JLabel lblSeleccion;
 
 	private void inicializarConFondo() {
 		for (int i = 0; i < 25; i++) {
@@ -74,36 +77,48 @@ public class VentanaEditor extends JFrame implements MouseListener {
 
 		panelSur = new JPanel();
 		contentPane.add(panelSur, BorderLayout.SOUTH);
-		
-		tbtnPared = new JToggleButton("Pared");
-		panelSur.add(tbtnPared);
-		tbtnPared.addActionListener(new ActionListener() {
+
+		lblSeleccion = new JLabel("");
+		panelSur.add(lblSeleccion);
+
+		btnPared = new JButton("Pared");
+		panelSur.add(btnPared);
+		btnPared.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				descripcion = "Pared";
-			}
-		});
-		
-		tbtnFondo = new JToggleButton("Fondo");
-		panelSur.add(tbtnFondo);
-		tbtnFondo.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				descripcion = "Fondo";
-			}
-		});
-		
-		/*Aniadir que solo pueda poner 1*/
-		tbtnPacman = new JToggleButton("Pacman");
-		panelSur.add(tbtnPacman);
-		tbtnPacman.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				descripcion = "Pacman";
+				ImageIcon im = new ImageIcon("Imagenes\\Pared.png");
+				im.setDescription("Imagenes\\Pared.png");
+				lblSeleccion.setIcon(im);
 			}
 		});
 
-		/*Implementar que si quitan los fantasmas vuelvan a estar visibles.*/
+		btnFondo = new JButton("Fondo");
+		panelSur.add(btnFondo);
+		btnFondo.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				descripcion = "Fondo";
+				ImageIcon im = new ImageIcon("Imagenes\\Fondo.png");
+				im.setDescription("Imagenes\\Fondo.png");
+				lblSeleccion.setIcon(im);
+			}
+		});
+
+		/* Aniadir que solo pueda poner 1 */
+		btnPacman = new JButton("Pacman");
+		panelSur.add(btnPacman);
+		btnPacman.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				descripcion = "Pacman";
+				ImageIcon im = new ImageIcon("Imagenes\\Pacman.png");
+				im.setDescription("Imagenes\\Pacman.png");
+				lblSeleccion.setIcon(im);
+			}
+		});
+
+		/* Implementar que si quitan los fantasmas vuelvan a estar visibles. */
 		comboBox = new JComboBox<String>();
 		panelSur.add(comboBox);
 		comboBox.addItem("Blinky");
@@ -114,10 +129,39 @@ public class VentanaEditor extends JFrame implements MouseListener {
 			public void actionPerformed(ActionEvent e) {
 				String fantasmaSeleccion = (String) comboBox.getSelectedItem();
 				descripcion = fantasmaSeleccion;
+				switch (fantasmaSeleccion) {
+				case "Blinky": {
+					ImageIcon im = new ImageIcon("Imagenes\\FantasmaRojo.png");
+					im.setDescription("Imagenes\\FantasmaRojo.png");
+					lblSeleccion.setIcon(im);
+				}
+					break;
+
+				case "Inky": {
+					ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
+					im.setDescription("Imagenes\\FantasmaAzul.png");
+					lblSeleccion.setIcon(im);
+				}
+					break;
+
+				case "Clyde": {
+					ImageIcon im = new ImageIcon("Imagenes\\FantasmaNaranja.png");
+					im.setDescription("Imagenes\\FantasmaNaranja.png");
+					lblSeleccion.setIcon(im);
+				}
+					break;
+
+				case "Pinky": {
+					ImageIcon im = new ImageIcon("Imagenes\\FantasmaRosa.png");
+					im.setDescription("Imagenes\\FantasmaRosa.png");
+					lblSeleccion.setIcon(im);
+				}
+					break;
+				}
 
 			}
 		});
-		
+
 		btnGuardarNivel = new JButton("Guard.Nivel");
 		btnGuardarNivel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -166,6 +210,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 		panelSur.add(btnVolver);
 
 		panelCentro = new JPanel();
+		panelCentro.setBackground(Color.BLACK);
 		contentPane.add(panelCentro, BorderLayout.CENTER);
 		panelCentro.setLayout(new GridLayout(0, 25, 0, 0));
 		/*
@@ -175,96 +220,110 @@ public class VentanaEditor extends JFrame implements MouseListener {
 		inicializarConFondo();
 	}
 
-	private void actualizarCombo(){
+	private void actualizarCombo() {
 		comboBox.removeAllItems();
-		for(String f : fantasmas)
+		for (String f : fantasmas)
 			comboBox.addItem(f);
 	}
-	private String obtenerDescripcionLabel(JLabel lblFoto){
+
+	private String obtenerDescripcionLabel(JLabel lblFoto) {
 		ImageIcon im = (ImageIcon) lblFoto.getIcon();
 		String des = im.getDescription();
 		return des;
 	}
-	private void restaurarFantasma(String des){
-		switch(des){
-		case "FantasmaAzul": fantasmas.add("Inky"); break;
-		case "FantasmaRosa": fantasmas.add("Pinky"); break;
-		case "FantasmaNaranja": fantasmas.add("Clyde"); break;
-		case "FantasmaRojo": fantasmas.add("Blinky"); break;
+
+	private void restaurarFantasma(String des) {
+		switch (des) {
+		case "FantasmaAzul":
+			fantasmas.add("Inky");
+			break;
+		case "FantasmaRosa":
+			fantasmas.add("Pinky");
+			break;
+		case "FantasmaNaranja":
+			fantasmas.add("Clyde");
+			break;
+		case "FantasmaRojo":
+			fantasmas.add("Blinky");
+			break;
 		}
 		comboBox.updateUI();
 	}
+
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		Point p = e.getPoint();
 		JLabel lblFoto = (JLabel) panelCentro.getComponentAt(p);
-		String des = obtenerDescripcionLabel(lblFoto).substring(9, obtenerDescripcionLabel(lblFoto).length()-4);
+		String des = obtenerDescripcionLabel(lblFoto).substring(9, obtenerDescripcionLabel(lblFoto).length() - 4);
 		System.out.println(des);
 		switch (descripcion) {
 		case "Pared": {
-			restaurarFantasma(des);	
+			// if (contadorPacman<1){
+			restaurarFantasma(des);
 			ImageIcon im = new ImageIcon("Imagenes\\Pared.png");
 			im.setDescription("Imagenes\\Pared.png");
 			lblFoto.setIcon(im);
 			System.out.println(panelCentro.getComponentCount());
-			break;
+			// contadorPacman++;
+			// }
 		}
+			break;
 		case "Fondo": {
 			restaurarFantasma(des);
 			ImageIcon im = new ImageIcon("Imagenes\\Fondo.png");
 			im.setDescription("Imagenes\\Fondo.png");
 			lblFoto.setIcon(im);
-			break;
 		}
+			break;
+
 		case "Pacman": {
 			restaurarFantasma(des);
 			ImageIcon im = new ImageIcon("Imagenes\\Pacman.png");
 			im.setDescription("Imagenes\\Pacman.png");
 			lblFoto.setIcon(im);
+		}
 			break;
 
-		}
 		case "Inky": {
 			restaurarFantasma(des);
 			ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
 			im.setDescription("Imagenes\\fantasmaAzul.png");
 			lblFoto.setIcon(im);
-			//comboBox.removeItem("Inky");
+			// comboBox.removeItem("Inky");
 			fantasmas.remove("Inky");
+		}
 			break;
 
-		}
 		case "Pinky": {
 			restaurarFantasma(des);
 			ImageIcon im = new ImageIcon("Imagenes\\FantasmaRosa.png");
 			im.setDescription("Imagenes\\FantasmaRosa.png");
 			lblFoto.setIcon(im);
-			//comboBox.removeItem("Pinky");
+			// comboBox.removeItem("Pinky");
 			fantasmas.remove("Pinky");
+		}
 			break;
 
-		}
 		case "Blinky": {
 			restaurarFantasma(des);
 			ImageIcon im = new ImageIcon("Imagenes\\FantasmaRojo.png");
 			im.setDescription("Imagenes\\FantasmaRojo.png");
 			lblFoto.setIcon(im);
-			//comboBox.removeItem("Blinky");
+			// comboBox.removeItem("Blinky");
 			fantasmas.remove("Blinky");
+		}
 			break;
 
-		}
 		case "Clyde": {
 			restaurarFantasma(des);
 			ImageIcon im = new ImageIcon("Imagenes\\FantasmaNaranja.png");
 			im.setDescription("Imagenes\\FantasmaNaranja.png");
 			lblFoto.setIcon(im);
-			//comboBox.removeItem("Clyde");
+			// comboBox.removeItem("Clyde");
 			fantasmas.remove("Clyde");
+		}
 			break;
 
-		}
-		
 		}
 		actualizarCombo();
 	}
