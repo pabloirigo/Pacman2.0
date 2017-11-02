@@ -269,7 +269,8 @@ public class VentanaEditor extends JFrame implements MouseListener {
 		}
 			break;
 		case "Fondo": {
-			/**sacar la descripcion del label donde estas clickando, si es igual a pacman significa que estas quitando
+			
+			/**Sacar la descripcion del label donde estas clickando, si es igual a pacman significa que estas quitando
 			  el pacman. poner enable el boton pacman.
 			if(== "Pacman") {
 				tbtnPacman.setEnabled(true);
