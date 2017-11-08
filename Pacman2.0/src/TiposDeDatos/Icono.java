@@ -1,34 +1,35 @@
 package TiposDeDatos;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
+public class Icono  {
 
 
-
-public class Icono  implements KeyListener {
-	
 	public Icono(){
-
-
-
-	}
-	public void mover() {
 		
 
 	}
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
+	public Boolean hayPared(int x, int y) {
+		Boolean haypared = false;	
+		
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		return haypared;
 		
 	}
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	
+
+
 }

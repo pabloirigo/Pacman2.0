@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import BaseDeDatos.BD;
+import TiposDeDatos.GestionFicheros;
 import TiposDeDatos.Usuario;
 
 import javax.swing.JLabel;
@@ -86,38 +87,27 @@ public class VentanaPrincipal extends JFrame {
 				JFileChooser fc = new JFileChooser("Niveles");
 				int resultado = fc.showOpenDialog(ventanaPrin);
 				if (resultado == JFileChooser.APPROVE_OPTION) {
-					FileInputStream fis;
-					try {
-						fis = new FileInputStream(fc.getSelectedFile());
+						/*fis = new FileInputStream(fc.getSelectedFile());
 						ObjectInputStream ois = new ObjectInputStream(fis);
-						Object aBi[][] = new Object[32][32];
+						Object aBi[][] = new Object[25][25];
 						JLabel label = (JLabel) ois.readObject();
 						int i = 0, j = 0;
 						while (label != null) {
 							aBi[i][j] = label;
 							j++;
-							if (j == 32) {
+							if (j == 25) {
 								i++;
 								j = 0;
 							}
 							label = (JLabel) ois.readObject();
 						}
-						ois.close();
+						ois.close();*/
+						Object aBi[][] = GestionFicheros.volcarFicheroArray(fc.getSelectedFile());
 						VentanaNivel ventNivel = new VentanaNivel(aBi);
 						ventNivel.setLocationRelativeTo(null);
 						ventNivel.setVisible(true);
 						ventanaPrin.dispose();
-						
-					} catch (FileNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (IOException e2) {
-						// TODO Auto-generated catch block
-						e2.printStackTrace();
-					} catch (ClassNotFoundException e3) {
-						// TODO Auto-generated catch block
-						e3.printStackTrace();
-					}
+				
 
 				}
 			}
