@@ -31,7 +31,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 	private JPanel contentPane, panelNorte, panelSur, panelCentro;
 	public ArrayList<String> aFotos;
 	private JButton btnGuardarNivel, btnVolver;
-	private String descripcion = "Pared";
+	private String descripcion ;
 	private JComboBox<String> comboBox;
 	private Point puntoIni, puntoFin;
 	private JButton btnPared, btnFondo, btnPacman;
@@ -57,7 +57,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 	 */
 
 	public VentanaEditor() {
-
+		descripcion =  "Pared";
 		fantasmas = new ArrayList<String>();
 		fantasmas.add("Pinky");
 		fantasmas.add("Inky");
@@ -80,6 +80,11 @@ public class VentanaEditor extends JFrame implements MouseListener {
 
 		lblSeleccion = new JLabel("");
 		panelSur.add(lblSeleccion);
+		if(descripcion.equals("Pared")){
+			ImageIcon im = new ImageIcon("Imagenes\\Pared.png");
+			im.setDescription("Imagenes\\Pared.png");
+			lblSeleccion.setIcon(im);
+		}
 
 		btnPared = new JButton("Pared");
 		panelSur.add(btnPared);
@@ -125,40 +130,49 @@ public class VentanaEditor extends JFrame implements MouseListener {
 		comboBox.addItem("Inky");
 		comboBox.addItem("Pinky");
 		comboBox.addItem("Clyde");
+		comboBox.setSelectedIndex(-1);
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String fantasmaSeleccion = (String) comboBox.getSelectedItem();
-				descripcion = fantasmaSeleccion;
-				switch (fantasmaSeleccion) {
-				case "Blinky": {
-					ImageIcon im = new ImageIcon("Imagenes\\FantasmaRojo.png");
-					im.setDescription("Imagenes\\FantasmaRojo.png");
+				if(comboBox.getSelectedIndex()!=-1){
+					String fantasmaSeleccion = (String) comboBox.getSelectedItem();
+					descripcion = fantasmaSeleccion;
+					switch (fantasmaSeleccion) {
+					case "Blinky": {
+						ImageIcon im = new ImageIcon("Imagenes\\FantasmaRojo.png");
+						im.setDescription("Imagenes\\FantasmaRojo.png");
+						lblSeleccion.setIcon(im);
+					}
+						break;
+	
+					case "Inky": {
+						ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
+						im.setDescription("Imagenes\\FantasmaAzul.png");
+						lblSeleccion.setIcon(im);
+					}
+						break;
+	
+					case "Clyde": {
+						ImageIcon im = new ImageIcon("Imagenes\\FantasmaNaranja.png");
+						im.setDescription("Imagenes\\FantasmaNaranja.png");
+						lblSeleccion.setIcon(im);
+					}
+						break;
+	
+					case "Pinky": {
+						ImageIcon im = new ImageIcon("Imagenes\\FantasmaRosa.png");
+						im.setDescription("Imagenes\\FantasmaRosa.png");
+						lblSeleccion.setIcon(im);
+					}
+						break;
+					}
+					comboBox.setSelectedIndex(-1);
+					
+				}else {
+					descripcion = "Pared";
+					ImageIcon im = new ImageIcon("Imagenes\\Pared.png");
+					im.setDescription("Imagenes\\Pared.png");
 					lblSeleccion.setIcon(im);
 				}
-					break;
-
-				case "Inky": {
-					ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
-					im.setDescription("Imagenes\\FantasmaAzul.png");
-					lblSeleccion.setIcon(im);
-				}
-					break;
-
-				case "Clyde": {
-					ImageIcon im = new ImageIcon("Imagenes\\FantasmaNaranja.png");
-					im.setDescription("Imagenes\\FantasmaNaranja.png");
-					lblSeleccion.setIcon(im);
-				}
-					break;
-
-				case "Pinky": {
-					ImageIcon im = new ImageIcon("Imagenes\\FantasmaRosa.png");
-					im.setDescription("Imagenes\\FantasmaRosa.png");
-					lblSeleccion.setIcon(im);
-				}
-					break;
-				}
-
 			}
 		});
 
@@ -214,7 +228,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 		contentPane.add(panelCentro, BorderLayout.CENTER);
 		panelCentro.setLayout(new GridLayout(0, 25, 0, 0));
 		/*
-		 * Hay que añadir al panelCentro un listener para los eventos de raton.
+		 * Hay que aniadir al panelCentro un listener para los eventos de raton.
 		 */
 		panelCentro.addMouseListener(this);
 		inicializarConFondo();
@@ -248,6 +262,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 			break;
 		}
 		comboBox.updateUI();
+		
 	}
 
 	public void mouseClicked(MouseEvent e) {
@@ -269,14 +284,12 @@ public class VentanaEditor extends JFrame implements MouseListener {
 		}
 			break;
 		case "Fondo": {
-			
 			/**Sacar la descripcion del label donde estas clickando, si es igual a pacman significa que estas quitando
 			  el pacman. poner enable el boton pacman.
 			if(== "Pacman") {
-				tbtnPacman.setEnabled(true);
-				
+				tbtnPacman.setEnabled(true);	
 			}**/
-
+			
 			restaurarFantasma(des);
 			ImageIcon im = new ImageIcon("Imagenes\\Fondo.png");
 			im.setDescription("Imagenes\\Fondo.png");
