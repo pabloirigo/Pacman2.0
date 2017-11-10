@@ -5,18 +5,14 @@ public class Pacman extends Icono {
 	private int x=0;
 	private int y=0;
 	
-
 	public Pacman() {
-
+		
 	}	
-	
-	
+		
 	public Pacman(int x, int y) {
 		super();
 		this.x = x;
-		this.y = y;
-		
-		
+		this.y = y;		
 	}
 
 	public int getX() {

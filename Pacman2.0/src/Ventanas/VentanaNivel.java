@@ -22,7 +22,7 @@ public class VentanaNivel extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane, panelNorte, panelSur, panelCentro;
 	public static Object aBi[][];
-	public static boolean Paredes[][];
+	
 	public int columnas, filas;
 	Pacman pacman = new Pacman();
 	Fantasmas fantasma = new Fantasmas();
@@ -66,15 +66,12 @@ public class VentanaNivel extends JFrame {
 
 		for (int i = 0; i < aBi.length; i++) {			
 			for (int j = 0; j < aBi[0].length; j++) {
-				Paredes[i][j]= true;
+				
 				panelCentro.add((JLabel) aBi[i][j]);
 				JLabel l = (JLabel)aBi[i][j];
 				ImageIcon im = (ImageIcon)l.getIcon();
+				
 
-				/**
-				 pasar las imagenes del fichero al array bidimensional aBi
-				 *
-				 ***/
 				if(im.getDescription().equals("Imagenes\\Pacman.png")){
 
 					pacman.setX(i);
@@ -100,13 +97,7 @@ public class VentanaNivel extends JFrame {
 					fantasma.setFantasmaRosaX(i);
 					fantasma.setFantasmaRosaY(j);	
 
-				}else if(im.getDescription().equals("Imagenes\\Pared.png")) {
-					Paredes[i][j]= false;
-					
-
-					
-			
-			}
+				}
 
 			setVisible(true);
 		}
@@ -115,7 +106,7 @@ public class VentanaNivel extends JFrame {
 	}
 
 
-	public void keyPressed(KeyEvent e) {
+	public void keyPressed(KeyEvent e ) {
 
 		// TODO Auto-generated method stub
 		/**pregunta: donde poner el movimiento? pacman o icono? o nivel? movimiento el mismo, 
@@ -130,21 +121,21 @@ public class VentanaNivel extends JFrame {
 		int keyCode = e.getKeyCode();
 		Pacman pacman = new Pacman();
 		MiThread t = new MiThread();
-		VentanaNivel.aBi = aBi;
+		
 
 		switch( keyCode ) {
 
 		case KeyEvent.VK_UP:						
-			t.run(1,pacman.getX(), pacman.getY());
+			t.run(1,aBi,pacman.getX(), pacman.getY());
 			break;	
 		case KeyEvent.VK_DOWN:						
-			t.run(2,pacman.getX(), pacman.getY());
+			t.run(2,aBi,pacman.getX(), pacman.getY());
 			break;
 		case KeyEvent.VK_RIGHT :			
-			t.run(3,pacman.getX(), pacman.getY());			
+			t.run(3,aBi,pacman.getX(), pacman.getY());			
 			break;
 		case KeyEvent.VK_LEFT:			
-			t.run( 4,pacman.getX(), pacman.getY());
+			t.run( 4,aBi,pacman.getX(), pacman.getY());
 			break;
 		}
 	}
@@ -152,31 +143,45 @@ public class VentanaNivel extends JFrame {
 }
 class MiThread extends Thread {
 
-	public void run(int dir, int x, int y) {
+	public void run(int dir,Object aBi[][], int x, int y) {
 
 	//	VentanaNivel.aBi = aBi;
 		Icono icono = new Icono(); 
+		Pacman pacman = new Pacman();
+		
 	
 		switch(dir) {
 		case 1 : //mover hacia arriba
-			while(icono.hayPared(x, y)==false) {
+			
+			while(icono.hayPared(dir,aBi,x,y)==false) {
 			x = x+10;
-			}
+			pacman.setX(x);			
 			
-			
+			}		
 			break;
 
-
 		case 2 :// mover hacia abajo
-			x = x - 10;		
+			
+			while(icono.hayPared(dir,aBi,x, y)== false) {
+			x = x - 10;	
+			pacman.setX(x);
+			}
+			
 			break;
 
 		case 3 : // mover hacia derecha
+			while(icono.hayPared(dir,aBi,x, y)==false) {
 			y = y+10;
+			pacman.setY(y);
+			
+			}
 			break;
 
 		case 4: // mover hacia izquierda
+			while(icono.hayPared(dir,aBi,x, y)==false) {
 			y = y-10;
+			pacman.setY(y);			
+			}
 			break;
 
 		}

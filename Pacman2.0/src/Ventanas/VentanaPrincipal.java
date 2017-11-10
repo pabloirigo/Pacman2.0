@@ -107,6 +107,7 @@ public class VentanaPrincipal extends JFrame {
 						ventNivel.setLocationRelativeTo(null);
 						ventNivel.setVisible(true);
 						ventanaPrin.dispose();
+						
 				
 
 				}
