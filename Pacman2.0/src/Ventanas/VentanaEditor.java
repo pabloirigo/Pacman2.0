@@ -24,17 +24,17 @@ import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JToggleButton;
 import java.awt.Color;
+import javax.swing.UIManager;
 
 public class VentanaEditor extends JFrame implements MouseListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane, panelNorte, panelSur, panelCentro;
 	public ArrayList<String> aFotos;
-	private JButton btnGuardarNivel, btnVolver;
+	private JButton btnGuardarNivel, btnVolver, btnPared, btnFondo, btnPacman;;
 	private String descripcion ;
 	private JComboBox<String> comboBox;
 	private Point puntoIni, puntoFin;
-	private JButton btnPared, btnFondo, btnPacman;
 	private ArrayList<String> fantasmas;
 	private int contadorPacman = 0;
 	private JLabel lblSeleccion;
@@ -73,6 +73,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 		setContentPane(contentPane);
 
 		panelNorte = new JPanel();
+		panelNorte.setBackground(UIManager.getColor("Button.background"));
 		contentPane.add(panelNorte, BorderLayout.NORTH);
 
 		panelSur = new JPanel();
@@ -270,7 +271,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 		Point p = e.getPoint();
 		JLabel lblFoto = (JLabel) panelCentro.getComponentAt(p);
 		String des = obtenerDescripcionLabel(lblFoto).substring(9, obtenerDescripcionLabel(lblFoto).length() - 4);
-		System.out.println(des);
+		System.out.println(descripcion);
 		switch (descripcion) {
 		case "Pared": {
 			// if (contadorPacman<1){
@@ -278,18 +279,11 @@ public class VentanaEditor extends JFrame implements MouseListener {
 			ImageIcon im = new ImageIcon("Imagenes\\Pared.png");
 			im.setDescription("Imagenes\\Pared.png");
 			lblFoto.setIcon(im);
-			System.out.println(panelCentro.getComponentCount());
 			// contadorPacman++;
 			// }
 		}
 			break;
-		case "Fondo": {
-			/**Sacar la descripcion del label donde estas clickando, si es igual a pacman significa que estas quitando
-			  el pacman. poner enable el boton pacman.
-			if(== "Pacman") {
-				tbtnPacman.setEnabled(true);	
-			}**/
-			
+		case "Fondo": {			
 			restaurarFantasma(des);
 			ImageIcon im = new ImageIcon("Imagenes\\Fondo.png");
 			im.setDescription("Imagenes\\Fondo.png");
@@ -308,10 +302,11 @@ public class VentanaEditor extends JFrame implements MouseListener {
 		case "Inky": {
 			restaurarFantasma(des);
 			ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
-			im.setDescription("Imagenes\\fantasmaAzul.png");
+			im.setDescription("Imagenes\\FantasmaAzul.png");
 			lblFoto.setIcon(im);
 			// comboBox.removeItem("Inky");
 			fantasmas.remove("Inky");
+			actualizarCombo();
 		}
 			break;
 
@@ -322,6 +317,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 			lblFoto.setIcon(im);
 			// comboBox.removeItem("Pinky");
 			fantasmas.remove("Pinky");
+			actualizarCombo();
 		}
 			break;
 
@@ -332,6 +328,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 			lblFoto.setIcon(im);
 			// comboBox.removeItem("Blinky");
 			fantasmas.remove("Blinky");
+			actualizarCombo();
 		}
 			break;
 
@@ -342,11 +339,13 @@ public class VentanaEditor extends JFrame implements MouseListener {
 			lblFoto.setIcon(im);
 			// comboBox.removeItem("Clyde");
 			fantasmas.remove("Clyde");
+			actualizarCombo();
 		}
 			break;
 
 		}
-		actualizarCombo();
+		//actualizarCombo();
+		System.out.println(descripcion);
 	}
 
 	@Override
