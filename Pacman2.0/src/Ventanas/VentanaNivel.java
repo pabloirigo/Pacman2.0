@@ -1,6 +1,7 @@
 package Ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -17,33 +18,20 @@ import TiposDeDatos.Pacman;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 
-public class VentanaNivel extends JFrame {
+public class VentanaNivel extends JFrame implements Runnable {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane, panelNorte, panelSur, panelCentro;
 	public static Object aBi[][];
-	
+
 	public int columnas, filas;
 	Pacman pacman = new Pacman();
 	Fantasmas fantasma = new Fantasmas();
+	int dir;
 	
-	
-
-
-
-
-	/**
-	 * Create the frame.
-	 */
 	public VentanaNivel(Object aBi[][]) {
 
-		
-		
-
-
 		VentanaNivel.aBi = aBi;
-	
-
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 650);
 		contentPane = new JPanel();
@@ -62,130 +50,145 @@ public class VentanaNivel extends JFrame {
 		panelCentro.setLayout(new GridLayout(0, 25, 0, 0));
 
 		//aBi = GestionFicheros.volcarFicheroArray(nomfich);
-
-
+		
 		for (int i = 0; i < aBi.length; i++) {			
 			for (int j = 0; j < aBi[0].length; j++) {
-				
-				panelCentro.add((JLabel) aBi[i][j]);
+				panelCentro.add((JLabel) aBi[i][j]);				
 				JLabel l = (JLabel)aBi[i][j];
 				ImageIcon im = (ImageIcon)l.getIcon();
-				
-
 				if(im.getDescription().equals("Imagenes\\Pacman.png")){
-
 					pacman.setX(i);
 					pacman.setY(j);
-
 				} else if(im.getDescription().equals("Imagenes\\FantasmaNaranja.png")) {
-
 					fantasma.setFantasmaNaranjaX(i);
 					fantasma.setFantasmaNaranjaY(j);
-
 				}else if(im.getDescription().equals("Imagenes\\FantasmaRojo.png")) {
-
 					fantasma.setFantasmaRojoX(i);
 					fantasma.setFantasmaRojoY(j);
-
 				}else if(im.getDescription().equals("Imagenes\\FantasmaAzul.png")) {
-
 					fantasma.setFantasmaAzulX(i);
 					fantasma.setFantasmaAzulY(j);
-
 				}else if(im.getDescription().equals("Imagenes\\FantasmaRosa.png")) {
-
 					fantasma.setFantasmaRosaX(i);
 					fantasma.setFantasmaRosaY(j);	
-
 				}
-
-			setVisible(true);
+				setVisible(true);
+			}
 		}
-
-	}
+		System.out.println(pacman.getX());
+		System.out.println(pacman.getY());
+		//t.start();
 	}
 
 
 	public void keyPressed(KeyEvent e ) {
 
 		// TODO Auto-generated method stub
-		/**pregunta: donde poner el movimiento? pacman o icono? o nivel? movimiento el mismo, 
-		 * pero cada uno tiene su inteligencia
-		 * 
-		 * keypressed en la ventananiveeel, 
-		 * 
-		 * while movimiento continuo.
-		 * 
-
-		 **/
 		int keyCode = e.getKeyCode();
 		Pacman pacman = new Pacman();
-		MiThread t = new MiThread();
-		
 
 		switch( keyCode ) {
-
-		case KeyEvent.VK_UP:						
-			t.run(1,aBi,pacman.getX(), pacman.getY());
+		case KeyEvent.VK_UP:
+			System.out.println(pacman.getX());
+			dir = 1;
+			run();
 			break;	
-		case KeyEvent.VK_DOWN:						
-			t.run(2,aBi,pacman.getX(), pacman.getY());
+		case KeyEvent.VK_DOWN:	
+			dir = 2;
+			run();
 			break;
-		case KeyEvent.VK_RIGHT :			
-			t.run(3,aBi,pacman.getX(), pacman.getY());			
+		case KeyEvent.VK_RIGHT :
+			dir = 3;
+			run();			
 			break;
-		case KeyEvent.VK_LEFT:			
-			t.run( 4,aBi,pacman.getX(), pacman.getY());
+		case KeyEvent.VK_LEFT:	
+			dir = 4;
+			run();
 			break;
 		}
 	}
 
-}
-class MiThread extends Thread {
 
-	public void run(int dir,Object aBi[][], int x, int y) {
+	public void run() {
+		
+		//como mover la imagen con layout???
+	
 
-	//	VentanaNivel.aBi = aBi;
-		Icono icono = new Icono(); 
 		Pacman pacman = new Pacman();
 		
-	
 		switch(dir) {
 		case 1 : //mover hacia arriba
-			
-			while(icono.hayPared(dir,aBi,x,y)==false) {
-			x = x+10;
-			pacman.setX(x);			
-			
+			while(Icono.hayPared(dir,aBi,pacman.getX(),pacman.getY())==false || Icono.dentroTablero(pacman.getX(), pacman.getY())==true) {
+				int y = pacman.getY() + 1;
+				pacman.setY(y);
+
+				int cx = pacman.getX();
+				int cy = pacman.getY();
+				//JLabel lblArriba = (JLabel)aBi[cx][cy-1];
+				ImageIcon im = new ImageIcon("Imagenes\\Pared.png");
+				ImageIcon im2 = new ImageIcon("Imagenes\\Pacman.png");
+				im2.setDescription("Imagenes\\Pacman");
+				im.setDescription("Imagenes\\Pared.png");
+				aBi[cx][cy] = new JLabel(im2);
+				aBi[cx][cy-1] = new JLabel(im);
+							
+				
 			}		
 			break;
-
 		case 2 :// mover hacia abajo
-			
-			while(icono.hayPared(dir,aBi,x, y)== false) {
-			x = x - 10;	
-			pacman.setX(x);
-			}
-			
-			break;
+			while(Icono.hayPared(dir,aBi,pacman.getX(), pacman.getY())== false || Icono.dentroTablero(pacman.getX(), pacman.getY())==true) {
+				int y = pacman.getY()-1;
+				pacman.setY(y);
 
+				int cx = pacman.getX();
+				int cy = pacman.getY();
+				//JLabel lblArriba = (JLabel)aBi[cx][cy-1];
+				ImageIcon im = new ImageIcon("Imagenes\\Pared.png");
+				ImageIcon im2 = new ImageIcon("Imagenes\\Pacman.png");
+				im2.setDescription("Imagenes\\Pacman");
+				im.setDescription("Imagenes\\Pared.png");
+				aBi[cx][cy] = new JLabel(im2);
+				aBi[cx][cy-1] = new JLabel(im);
+
+			}
+			break;
 		case 3 : // mover hacia derecha
-			while(icono.hayPared(dir,aBi,x, y)==false) {
-			y = y+10;
-			pacman.setY(y);
-			
+			while(Icono.hayPared(dir,aBi,pacman.getX(),pacman.getY())==false || Icono.dentroTablero(pacman.getX(), pacman.getY())==true) {
+				int x = pacman.getX()+1;
+				pacman.setX(x);
+				
+				int cx = pacman.getX();
+				int cy = pacman.getY();
+				//JLabel lblArriba = (JLabel)aBi[cx][cy-1];
+				ImageIcon im = new ImageIcon("Imagenes\\Pared.png");
+				ImageIcon im2 = new ImageIcon("Imagenes\\Pacman.png");
+				im2.setDescription("Imagenes\\Pacman");
+				im.setDescription("Imagenes\\Pared.png");
+				aBi[cx][cy] = new JLabel(im2);
+				aBi[cx][cy-1] = new JLabel(im);
+				
 			}
 			break;
-
 		case 4: // mover hacia izquierda
-			while(icono.hayPared(dir,aBi,x, y)==false) {
-			y = y-10;
-			pacman.setY(y);			
+			while(Icono.hayPared(dir,aBi,pacman.getX(),pacman.getY())==false || Icono.dentroTablero(pacman.getX(), pacman.getY())==true) {
+				int x= pacman.getX() -1;
+				pacman.setX(x);
+				
+				int cx = pacman.getX();
+				int cy = pacman.getY();
+				//JLabel lblArriba = (JLabel)aBi[cx][cy-1];
+				ImageIcon im = new ImageIcon("Imagenes\\Pared.png");
+				ImageIcon im2 = new ImageIcon("Imagenes\\Pacman.png");
+				im2.setDescription("Imagenes\\Pacman");
+				im.setDescription("Imagenes\\Pared.png");
+				aBi[cx][cy] = new JLabel(im2);
+				aBi[cx][cy-1] = new JLabel(im);
+				
+				
+
 			}
 			break;
-
 		}
 	}
-
 
 }
