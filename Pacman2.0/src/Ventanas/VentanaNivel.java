@@ -85,7 +85,7 @@ public class VentanaNivel extends JFrame implements Runnable {
 
 		// TODO Auto-generated method stub
 		int keyCode = e.getKeyCode();
-		Pacman pacman = new Pacman();
+		
 
 		switch( keyCode ) {
 		case KeyEvent.VK_UP:
@@ -114,7 +114,7 @@ public class VentanaNivel extends JFrame implements Runnable {
 		//como mover la imagen con layout???
 	
 
-		Pacman pacman = new Pacman();
+		
 		
 		switch(dir) {
 		case 1 : //mover hacia arriba

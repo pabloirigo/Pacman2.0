@@ -2,8 +2,6 @@ package TiposDeDatos;
 
 public class Fantasmas extends Icono {
 
-
-
 	private int fantasmaNaranjaX;
 	private int fantasmaNaranjaY;
 	private int fantasmaAzulX;
@@ -12,9 +10,6 @@ public class Fantasmas extends Icono {
 	private int fantasmaRojoY;
 	private int fantasmaRosaX;
 	private int fantasmaRosaY;
-
-
-
 	
 	public int getFantasmaNaranjaX() {
 		return fantasmaNaranjaX;
