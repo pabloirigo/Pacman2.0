@@ -8,44 +8,46 @@ import Ventanas.VentanaNivel;
 
 public class Icono  {
 
-	public static boolean paredes[][];
+	public static boolean obstaculo[][];
 
 
 	public Icono() {
 
 	}
-	public static boolean hayPared(int dir,Object aBi[][], int x, int y) {
+	public static boolean hayObstaculo(int dir,Object aBi[][], int x, int y) {
 		/** dir:1 arriba 
 		 * 		2 abajo
 		 * 		3 derecha
 		 * 		4 izquierda
 		 */
-		boolean haypared = false;			
+		boolean hayObstaculo = false;			
 		for (int i = 0; i < aBi.length; i++) {			
 			for (int j = 0; j < aBi[0].length; j++) {
 				JLabel l = (JLabel)aBi[i][j];
 				ImageIcon im = (ImageIcon)l.getIcon();
-				paredes[i][j]=false;
-				if(im.getDescription().equals("Imagenes\\Pared.png")) {
-					paredes[i][j]=true;
+				if(im.getDescription().equals("Imagenes\\Fondo.png")) { //.notequals?
+					obstaculo[i][j]=false;
+				}
+				else {
+					obstaculo[i][j]= true;
 				}
 			}
 		}
 		switch(dir) {
-		case 1: if(paredes[x][y-1]==true ) {
-			haypared =true;
+		case 1: if(obstaculo[x][y-1]==true ) {
+			hayObstaculo =true;
 		}
-		case 2 : if(paredes[x][y+1]==true) {
-			haypared = true;
+		case 2 : if(obstaculo[x][y+1]==true) {
+			hayObstaculo = true;
 		}
-		case 3 :if(paredes[x+1][y]==true){
-			haypared= true;
+		case 3 :if(obstaculo[x+1][y]==true){
+			hayObstaculo= true;
 		}
-		case 4: if(paredes[x-1][y]== true) {
-			haypared= true;
+		case 4: if(obstaculo[x-1][y]== true) {
+			hayObstaculo= true;
 		}
 		}
-		return haypared;
+		return hayObstaculo;
 	}
 	public static boolean dentroTablero(int x, int y) {
 		// no es seguro que las dimensiones del panelCentro son estas, REVISAR!

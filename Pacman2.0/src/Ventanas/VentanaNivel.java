@@ -17,8 +17,9 @@ import TiposDeDatos.Pacman;
 
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class VentanaNivel extends JFrame implements Runnable {
+public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane, panelNorte, panelSur, panelCentro;
@@ -28,8 +29,9 @@ public class VentanaNivel extends JFrame implements Runnable {
 	Pacman pacman = new Pacman();
 	Fantasmas fantasma = new Fantasmas();
 	int dir;
-	
+
 	public VentanaNivel(Object aBi[][]) {
+		
 
 		VentanaNivel.aBi = aBi;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -50,7 +52,7 @@ public class VentanaNivel extends JFrame implements Runnable {
 		panelCentro.setLayout(new GridLayout(0, 25, 0, 0));
 
 		//aBi = GestionFicheros.volcarFicheroArray(nomfich);
-		
+
 		for (int i = 0; i < aBi.length; i++) {			
 			for (int j = 0; j < aBi[0].length; j++) {
 				panelCentro.add((JLabel) aBi[i][j]);				
@@ -75,21 +77,31 @@ public class VentanaNivel extends JFrame implements Runnable {
 				setVisible(true);
 			}
 		}
+		
 		System.out.println(pacman.getX());
 		System.out.println(pacman.getY());
 		//t.start();
+		
+		
 	}
-
-
-	public void keyPressed(KeyEvent e ) {
-
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void keyPressed(KeyEvent e) {
+		
 		// TODO Auto-generated method stub
 		int keyCode = e.getKeyCode();
-		
 
-		switch( keyCode ) {
+		switch(keyCode) {
 		case KeyEvent.VK_UP:
-			System.out.println(pacman.getX());
+			System.out.println("hola mundo");
 			dir = 1;
 			run();
 			break;	
@@ -108,38 +120,33 @@ public class VentanaNivel extends JFrame implements Runnable {
 		}
 	}
 
-
 	public void run() {
-		
-		//como mover la imagen con layout???
-	
 
-		
-		
 		switch(dir) {
 		case 1 : //mover hacia arriba
-			while(Icono.hayPared(dir,aBi,pacman.getX(),pacman.getY())==false || Icono.dentroTablero(pacman.getX(), pacman.getY())==true) {
+			while(Icono.hayObstaculo(dir,aBi,pacman.getX(),pacman.getY())==false || Icono.dentroTablero(pacman.getX(), pacman.getY())==true) {
 				int y = pacman.getY() + 1;
 				pacman.setY(y);
-
+				
 				int cx = pacman.getX();
 				int cy = pacman.getY();
 				//JLabel lblArriba = (JLabel)aBi[cx][cy-1];
-				ImageIcon im = new ImageIcon("Imagenes\\Pared.png");
+				ImageIcon im = new ImageIcon("Imagenes\\Fondo.png");
 				ImageIcon im2 = new ImageIcon("Imagenes\\Pacman.png");
 				im2.setDescription("Imagenes\\Pacman");
-				im.setDescription("Imagenes\\Pared.png");
+				im.setDescription("Imagenes\\Fondo.png");
 				aBi[cx][cy] = new JLabel(im2);
 				aBi[cx][cy-1] = new JLabel(im);
-							
-				
+
+
 			}		
 			break;
 		case 2 :// mover hacia abajo
-			while(Icono.hayPared(dir,aBi,pacman.getX(), pacman.getY())== false || Icono.dentroTablero(pacman.getX(), pacman.getY())==true) {
+			while(Icono.hayObstaculo(dir,aBi,pacman.getX(), pacman.getY())== false || Icono.dentroTablero(pacman.getX(), pacman.getY())==true) {
 				int y = pacman.getY()-1;
 				pacman.setY(y);
 
+				
 				int cx = pacman.getX();
 				int cy = pacman.getY();
 				//JLabel lblArriba = (JLabel)aBi[cx][cy-1];
@@ -153,10 +160,10 @@ public class VentanaNivel extends JFrame implements Runnable {
 			}
 			break;
 		case 3 : // mover hacia derecha
-			while(Icono.hayPared(dir,aBi,pacman.getX(),pacman.getY())==false || Icono.dentroTablero(pacman.getX(), pacman.getY())==true) {
+			while(Icono.hayObstaculo(dir,aBi,pacman.getX(),pacman.getY())==false || Icono.dentroTablero(pacman.getX(), pacman.getY())==true) {
 				int x = pacman.getX()+1;
 				pacman.setX(x);
-				
+
 				int cx = pacman.getX();
 				int cy = pacman.getY();
 				//JLabel lblArriba = (JLabel)aBi[cx][cy-1];
@@ -166,14 +173,14 @@ public class VentanaNivel extends JFrame implements Runnable {
 				im.setDescription("Imagenes\\Pared.png");
 				aBi[cx][cy] = new JLabel(im2);
 				aBi[cx][cy-1] = new JLabel(im);
-				
+
 			}
 			break;
 		case 4: // mover hacia izquierda
-			while(Icono.hayPared(dir,aBi,pacman.getX(),pacman.getY())==false || Icono.dentroTablero(pacman.getX(), pacman.getY())==true) {
+			while(Icono.hayObstaculo(dir,aBi,pacman.getX(),pacman.getY())==false || Icono.dentroTablero(pacman.getX(), pacman.getY())==true) {
 				int x= pacman.getX() -1;
 				pacman.setX(x);
-				
+
 				int cx = pacman.getX();
 				int cy = pacman.getY();
 				//JLabel lblArriba = (JLabel)aBi[cx][cy-1];
@@ -183,12 +190,11 @@ public class VentanaNivel extends JFrame implements Runnable {
 				im.setDescription("Imagenes\\Pared.png");
 				aBi[cx][cy] = new JLabel(im2);
 				aBi[cx][cy-1] = new JLabel(im);
-				
-				
 
 			}
 			break;
 		}
 	}
+	
 
 }
