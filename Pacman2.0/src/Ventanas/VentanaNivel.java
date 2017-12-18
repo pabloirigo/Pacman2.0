@@ -77,7 +77,7 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 				setVisible(true);
 			}
 		}
-		
+		this.addKeyListener(this);
 		System.out.println(pacman.getX());
 		System.out.println(pacman.getY());
 		//t.start();
@@ -137,7 +137,7 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 				im.setDescription("Imagenes\\Fondo.png");
 				aBi[cx][cy] = new JLabel(im2);
 				aBi[cx][cy-1] = new JLabel(im);
-
+ 
 
 			}		
 			break;
