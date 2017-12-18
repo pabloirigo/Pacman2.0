@@ -32,13 +32,15 @@ public class VentanaEditor extends JFrame implements MouseListener {
 	private JPanel contentPane, panelNorte, panelSur, panelCentro;
 	public ArrayList<String> aFotos;
 	private JButton btnGuardarNivel, btnVolver, btnPared, btnFondo, btnPacman;;
-	private String descripcion ;
+	private String descripcion;
 	private JComboBox<String> comboBox;
 	private Point puntoIni, puntoFin;
 	private ArrayList<String> fantasmas;
 	private int contadorPacman = 0;
 	private JLabel lblSeleccion;
-
+	private final static int Anchura_Label = 30;
+	private final static int Altura_Label = 30;
+	
 	private void inicializarConFondo() {
 		for (int i = 0; i < 25; i++) {
 			for (int j = 0; j < 25; j++) {
@@ -57,12 +59,13 @@ public class VentanaEditor extends JFrame implements MouseListener {
 	 */
 
 	public VentanaEditor() {
-		descripcion =  "Pared";
+		descripcion = "Pared";
 		fantasmas = new ArrayList<String>();
 		fantasmas.add("Pinky");
 		fantasmas.add("Inky");
 		fantasmas.add("Clyde");
 		fantasmas.add("Blinky");
+
 		aFotos = VentanaPrincipal.bd.obtenerFotos();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -81,7 +84,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 
 		lblSeleccion = new JLabel("");
 		panelSur.add(lblSeleccion);
-		if(descripcion.equals("Pared")){
+		if (descripcion.equals("Pared")) {
 			ImageIcon im = new ImageIcon("Imagenes\\Pared.png");
 			im.setDescription("Imagenes\\Pared.png");
 			lblSeleccion.setIcon(im);
@@ -118,8 +121,8 @@ public class VentanaEditor extends JFrame implements MouseListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				descripcion = "Pacman";
-				ImageIcon im = new ImageIcon("Imagenes\\Pacman.png");
-				im.setDescription("Imagenes\\Pacman.png");
+				ImageIcon im = new ImageIcon("Imagenes\\PacmanSinFondo.png");
+				im.setDescription("Imagenes\\PacmanSinFondo.png");
 				lblSeleccion.setIcon(im);
 			}
 		});
@@ -134,7 +137,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 		comboBox.setSelectedIndex(-1);
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(comboBox.getSelectedIndex()!=-1){
+				if (comboBox.getSelectedIndex() != -1) {
 					String fantasmaSeleccion = (String) comboBox.getSelectedItem();
 					descripcion = fantasmaSeleccion;
 					switch (fantasmaSeleccion) {
@@ -144,21 +147,21 @@ public class VentanaEditor extends JFrame implements MouseListener {
 						lblSeleccion.setIcon(im);
 					}
 						break;
-	
+
 					case "Inky": {
 						ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
 						im.setDescription("Imagenes\\FantasmaAzul.png");
 						lblSeleccion.setIcon(im);
 					}
 						break;
-	
+
 					case "Clyde": {
 						ImageIcon im = new ImageIcon("Imagenes\\FantasmaNaranja.png");
 						im.setDescription("Imagenes\\FantasmaNaranja.png");
 						lblSeleccion.setIcon(im);
 					}
 						break;
-	
+
 					case "Pinky": {
 						ImageIcon im = new ImageIcon("Imagenes\\FantasmaRosa.png");
 						im.setDescription("Imagenes\\FantasmaRosa.png");
@@ -167,8 +170,8 @@ public class VentanaEditor extends JFrame implements MouseListener {
 						break;
 					}
 					comboBox.setSelectedIndex(-1);
-					
-				}else {
+
+				} else {
 					descripcion = "Pared";
 					ImageIcon im = new ImageIcon("Imagenes\\Pared.png");
 					im.setDescription("Imagenes\\Pared.png");
@@ -225,7 +228,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 		panelSur.add(btnVolver);
 
 		panelCentro = new JPanel();
-		panelCentro.setBackground(Color.BLACK);
+		panelCentro.setBackground(UIManager.getColor("Button.background"));
 		contentPane.add(panelCentro, BorderLayout.CENTER);
 		panelCentro.setLayout(new GridLayout(0, 25, 0, 0));
 		/*
@@ -263,7 +266,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 			break;
 		}
 		comboBox.updateUI();
-		
+
 	}
 
 	public void mouseClicked(MouseEvent e) {
@@ -271,7 +274,6 @@ public class VentanaEditor extends JFrame implements MouseListener {
 		Point p = e.getPoint();
 		JLabel lblFoto = (JLabel) panelCentro.getComponentAt(p);
 		String des = obtenerDescripcionLabel(lblFoto).substring(9, obtenerDescripcionLabel(lblFoto).length() - 4);
-		System.out.println(descripcion);
 		switch (descripcion) {
 		case "Pared": {
 			// if (contadorPacman<1){
@@ -283,7 +285,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 			// }
 		}
 			break;
-		case "Fondo": {			
+		case "Fondo": {
 			restaurarFantasma(des);
 			ImageIcon im = new ImageIcon("Imagenes\\Fondo.png");
 			im.setDescription("Imagenes\\Fondo.png");
@@ -293,8 +295,8 @@ public class VentanaEditor extends JFrame implements MouseListener {
 
 		case "Pacman": {
 			restaurarFantasma(des);
-			ImageIcon im = new ImageIcon("Imagenes\\Pacman.png");
-			im.setDescription("Imagenes\\Pacman.png");
+			ImageIcon im = new ImageIcon("Imagenes\\PacmanConFondo.png");
+			im.setDescription("Imagenes\\PacmanConFondo.png");
 			lblFoto.setIcon(im);
 		}
 			break;
@@ -344,8 +346,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 			break;
 
 		}
-		//actualizarCombo();
-		System.out.println(descripcion);
+		// actualizarCombo();
 	}
 
 	@Override
@@ -358,9 +359,58 @@ public class VentanaEditor extends JFrame implements MouseListener {
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		puntoFin = e.getPoint();
+		
+		/* Posibilidades:
+		 * 1) Si x1 < x2 entonces se crea una recta hacia la derecha.
+		 * 2) Si x1 > x2 entonces se crea una recta hacia la izquierda. 
+		 * 3) Si y1 > y2 entonces se crea una recta hacia abajo.
+		 * 4) Si y1 < y2 entonces se crea una recta hacia arriba.
+		 */
+		 if(Math.abs(puntoFin.getX()-puntoIni.getX())>Math.abs(puntoFin.getY()-puntoIni.getY())){
+			if(puntoIni.getX()<puntoFin.getX()){
+				JLabel lblFoto = (JLabel) panelCentro.getComponentAt(puntoIni);
+				Point p = new Point(puntoIni);
+				for(int i=(int)puntoIni.getX();i<=(int)puntoFin.getX();i+=lblFoto.getWidth()){
+					JLabel lbl = (JLabel) panelCentro.getComponentAt(p);
+					lbl.setIcon(lblFoto.getIcon());
+					panelCentro.updateUI();
+					p.setLocation(p.getX()+lbl.getWidth(), p.getY());
+				}
+			
+			}else{
+				JLabel lblFoto = (JLabel) panelCentro.getComponentAt(puntoIni);
+				Point p = new Point(puntoIni);
+				for(int i=(int)puntoIni.getX();i>=(int)puntoFin.getX();i-=lblFoto.getWidth()){
+					JLabel lbl = (JLabel) panelCentro.getComponentAt(p);
+					lbl.setIcon(lblFoto.getIcon());
+					panelCentro.updateUI();
+					p.setLocation(p.getX()-lbl.getWidth(), p.getY());
+				}
 
+			}
+		}else if(Math.abs(puntoFin.getY()-puntoIni.getY())>Math.abs(puntoFin.getX()-puntoIni.getX())){ 
+			if(puntoIni.getY()<puntoFin.getY()){
+				JLabel lblFoto = (JLabel) panelCentro.getComponentAt(puntoIni);
+				Point p = new Point(puntoIni);
+				for(int i=(int)puntoIni.getY();i<=(int)puntoFin.getY();i+=lblFoto.getHeight()){
+					JLabel lbl = (JLabel) panelCentro.getComponentAt(p);
+					lbl.setIcon(lblFoto.getIcon());
+					panelCentro.updateUI();
+					p.setLocation(p.getX(), p.getY()+lbl.getHeight());
+				}
+			}else{
+				JLabel lblFoto = (JLabel) panelCentro.getComponentAt(puntoIni);
+				Point p = new Point(puntoIni);
+				for(int i=(int)puntoIni.getY();i>=(int)puntoFin.getY();i-=lblFoto.getHeight()){
+					JLabel lbl = (JLabel) panelCentro.getComponentAt(p);
+					lbl.setIcon(lblFoto.getIcon());
+					panelCentro.updateUI();
+					p.setLocation(p.getX(), p.getY()-lbl.getHeight());
+				}
+			}
+		
+		}
 	}
-
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
