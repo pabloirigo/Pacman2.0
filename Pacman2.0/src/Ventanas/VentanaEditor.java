@@ -242,6 +242,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 		comboBox.removeAllItems();
 		for (String f : fantasmas)
 			comboBox.addItem(f);
+		comboBox.setSelectedItem(-1);
 	}
 
 	private String obtenerDescripcionLabel(JLabel lblFoto) {
@@ -265,6 +266,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 			fantasmas.add("Blinky");
 			break;
 		}
+		actualizarCombo();
 		comboBox.updateUI();
 
 	}
@@ -274,6 +276,10 @@ public class VentanaEditor extends JFrame implements MouseListener {
 		Point p = e.getPoint();
 		JLabel lblFoto = (JLabel) panelCentro.getComponentAt(p);
 		String des = obtenerDescripcionLabel(lblFoto).substring(9, obtenerDescripcionLabel(lblFoto).length() - 4);
+		System.out.println(des);
+		if(des.equalsIgnoreCase("PacmanConFondo")) {
+			btnPacman.setEnabled(true);
+		}
 		switch (descripcion) {
 		case "Pared": {
 			// if (contadorPacman<1){
@@ -281,6 +287,8 @@ public class VentanaEditor extends JFrame implements MouseListener {
 			ImageIcon im = new ImageIcon("Imagenes\\Pared.png");
 			im.setDescription("Imagenes\\Pared.png");
 			lblFoto.setIcon(im);
+			actualizarCombo();
+			comboBox.setSelectedIndex(-1);
 			// contadorPacman++;
 			// }
 		}
@@ -290,6 +298,13 @@ public class VentanaEditor extends JFrame implements MouseListener {
 			ImageIcon im = new ImageIcon("Imagenes\\Fondo.png");
 			im.setDescription("Imagenes\\Fondo.png");
 			lblFoto.setIcon(im);
+			actualizarCombo();
+			comboBox.setSelectedIndex(-1);
+			descripcion = "Fondo";
+			im = new ImageIcon("Imagenes\\Fondo.png");
+			im.setDescription("Imagenes\\Fondo.png");
+			lblSeleccion.setIcon(im);
+			
 		}
 			break;
 
@@ -298,6 +313,13 @@ public class VentanaEditor extends JFrame implements MouseListener {
 			ImageIcon im = new ImageIcon("Imagenes\\PacmanConFondo.png");
 			im.setDescription("Imagenes\\PacmanConFondo.png");
 			lblFoto.setIcon(im);
+			btnPacman.setEnabled(false);
+			descripcion = "Fondo";
+			ImageIcon im2 = new ImageIcon("Imagenes\\Fondo.png");
+			im2.setDescription("Imagenes\\Fondo.png");
+			lblSeleccion.setIcon(im2);
+			actualizarCombo();
+			comboBox.setSelectedIndex(-1);
 		}
 			break;
 
@@ -309,6 +331,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 			// comboBox.removeItem("Inky");
 			fantasmas.remove("Inky");
 			actualizarCombo();
+			comboBox.setSelectedIndex(-1);
 		}
 			break;
 
@@ -320,6 +343,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 			// comboBox.removeItem("Pinky");
 			fantasmas.remove("Pinky");
 			actualizarCombo();
+			comboBox.setSelectedIndex(-1);
 		}
 			break;
 
@@ -331,6 +355,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 			// comboBox.removeItem("Blinky");
 			fantasmas.remove("Blinky");
 			actualizarCombo();
+			comboBox.setSelectedIndex(-1);
 		}
 			break;
 
@@ -342,11 +367,11 @@ public class VentanaEditor extends JFrame implements MouseListener {
 			// comboBox.removeItem("Clyde");
 			fantasmas.remove("Clyde");
 			actualizarCombo();
+			comboBox.setSelectedIndex(-1);
 		}
 			break;
 
 		}
-		// actualizarCombo();
 	}
 
 	@Override
