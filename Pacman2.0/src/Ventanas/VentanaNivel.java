@@ -24,11 +24,11 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane, panelNorte, panelSur, panelCentro;
 	public static Object aBi[][];
-
+	public static int puntuacion=0;
 	public int columnas, filas;
 	Pacman pacman = new Pacman();
 	Fantasmas fantasma = new Fantasmas();
-	int dir, f, c;
+	int dir, f, c, fBlinky, cBlinky, fInky, cInky, fClyde, cClyde, fPinky, cPinky;
 
 	public VentanaNivel(Object aBi[][]) {
 		
@@ -60,7 +60,8 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 				
 				JLabel l = (JLabel)aBi[i][j];
 				ImageIcon im = (ImageIcon)l.getIcon();
-				if(!im.getDescription().equals("Imagenes\\PacmanConFondo.png") && !im.getDescription().equals("Imagenes\\Pared.png") ){
+				if(!im.getDescription().equals("Imagenes\\PacmanConFondo.png") && !im.getDescription().equals("Imagenes\\Pared.png")
+						&& !im.getDescription().startsWith("Imagenes\\Fan") ){
 					ImageIcon im2 = new ImageIcon("Imagenes\\Bolita.png");
 					im2.setDescription("Imagenes\\Bolita.png");
 					((JLabel)aBi[i][j]).setIcon(im2);
@@ -72,107 +73,38 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 				if (((ImageIcon) ((JLabel) aBi[i][j]).getIcon()).getDescription()
 						.equalsIgnoreCase("Imagenes\\PacmanConFondo.png")) {
 					System.out.println("HE ENCONTRADO EL Pacman.");
-					
 					f = i;
 					c = j;
-					
+				}else if(((ImageIcon) ((JLabel) aBi[i][j]).getIcon()).getDescription()
+						.equalsIgnoreCase("Imagenes\\FantasmaAzul.png")) {
+					System.out.println("HE ENCONTRADO EL FantasmaAzul.");
+					fInky = i;
+					cInky = j;
+				}else if(((ImageIcon) ((JLabel) aBi[i][j]).getIcon()).getDescription()
+						.equalsIgnoreCase("Imagenes\\FantasmaRojo.png")) {
+					System.out.println("HE ENCONTRADO EL FantasmaRojo.");
+					fBlinky = i;
+					cBlinky = j;
+				}else if(((ImageIcon) ((JLabel) aBi[i][j]).getIcon()).getDescription()
+						.equalsIgnoreCase("Imagenes\\FantasmaNaranja.png")) {
+					System.out.println("HE ENCONTRADO EL FantasmaNaranja.");
+					fClyde = i;
+					cClyde = j;
+				}else if(((ImageIcon) ((JLabel) aBi[i][j]).getIcon()).getDescription()
+						.equalsIgnoreCase("Imagenes\\FantasmaRosa.png")) {
+					System.out.println("HE ENCONTRADO EL FantasmaRosa.");
+					fPinky = i;
+					cPinky = j;
 				}
 			}
 			setVisible(true);
 		}
-		System.out.println("El pacman está en " + f + "-" + c);
-		
-
-		/*for (int i = 0; i < aBi.length; i++) {			
-			for (int j = 0; j < aBi[0].length; j++) {
-				panelCentro.add((JLabel) aBi[i][j]);
-				
-//				ImageIcon im2 = new ImageIcon("Imagenes\\Bolita.png");
-//				im2.setDescription("Imagenes\\Bolita.png");
-//				JLabel lblFoto = new JLabel(im2);
-//				panelCentro.add(lblFoto);
-				
-			
-				
-				JLabel l = (JLabel)aBi[i][j];
-				ImageIcon im = (ImageIcon)l.getIcon();
-				
-				if(im.getDescription().equals("Imagenes\\PacmanConFondo.png")){
-					pacman.setX(i);
-					pacman.setY(j);
-				} else if(im.getDescription().equals("Imagenes\\FantasmaNaranja.png")) {
-					fantasma.setFantasmaNaranjaX(i);
-					fantasma.setFantasmaNaranjaY(j);
-				}else if(im.getDescription().equals("Imagenes\\FantasmaRojo.png")) {
-					fantasma.setFantasmaRojoX(i);
-					fantasma.setFantasmaRojoY(j);
-				}else if(im.getDescription().equals("Imagenes\\FantasmaAzul.png")) {
-					fantasma.setFantasmaAzulX(i);
-					fantasma.setFantasmaAzulY(j);
-				}else if(im.getDescription().equals("Imagenes\\FantasmaRosa.png")) {
-					fantasma.setFantasmaRosaX(i);
-					fantasma.setFantasmaRosaY(j);	
-				}
-				setVisible(true);
-			}
-		}
-		Icono.hayPared(aBi);
-		this.addKeyListener(this);
-		System.out.println(pacman.getX());
-		System.out.println(pacman.getY());
-		//t.start();*/
-		
-		
+		System.out.println("El pacman está en " + f + "-" + c);	
+		System.out.println("El FantasmaAzul está en " + fInky + "-" + cInky);
+		System.out.println("El FantasmaRojo está en " + fBlinky + "-" + cBlinky);
+		System.out.println("El FantasmaNaranja está en " + fClyde + "-" + cClyde);
+		System.out.println("El FantasmaRosa está en " + fPinky + "-" + cPinky);
 	}
-	public void generarBolitas() {
-		
-		for (int i = 0; i < aBi.length; i++) {			
-			for (int j = 0; j < aBi[0].length; j++) {
-				
-				//poner bolita encima del Jlabel
-				
-				
-				
-			}
-		}
-		
-/*		Tablero.inicializarBolitas();
-//		boolean aPosicionesBolitas[][] = new boolean[ALTURA_ARRAY][ANCHURA_ARRAY];
-//		int i, j;
-//		//int posXBolita = 0,posYBolita = 0 ;
-//		for (j = 0; j < aPosicionesBolitas.length; j++) {
-//			for (i = 0; i < aPosicionesBolitas[0].length; i++) {
-//				if (Tablero.posicionesGenerarBolitas(i, j)) {
-//					imagenBolita = new ImageIcon(getClass().getResource("/imagenes/Bolita.png"));
-//					lblBolita = new JLabel(imagenBolita);
-//					panelFondo.add(lblBolita);
-//					posXBolita = ((i * 28) + 12);
-//					posYBolita = ((j * 28) + 12);
-//					lblBolita.setBounds(posXBolita, posYBolita , 28, 28);
-//					
-//				}
-//			}
-//		}*/
-	}
-	
-	public void comeBolita(Object aBi[][]) {
-		
-		JLabel l = (JLabel)aBi[f][c];
-		ImageIcon im = (ImageIcon)l.getIcon();
-		
-		if(im.getDescription().equals("Imagenes\\Bolita.png")){
-			
-			
-			
-			
-			
-		}
-		
-		
-		
-		
-	}
-	
 	
 	public void cambiarPanel() {
 		panelCentro.removeAll();
@@ -199,13 +131,8 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 		// TODO Auto-generated method stub
 		switch(k.getKeyCode()) {
 		case KeyEvent.VK_RIGHT:
-			//no funciona el run, crashea por que no detecta nada en el array al mover el pacman.
-			//en teoria si que hay datos cargados en el array pero no detecta.
-			//se incializa el array en la clase ventanaNivel.
-			/*System.out.println("arriba");
-			dir = 1;
-			run();*/
-			if(c<24) {
+			if(c<24 && (((ImageIcon) ((JLabel) aBi[f][c+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Bolita.png"))||
+					(((ImageIcon) ((JLabel) aBi[f][c+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Fondo.png"))) {
 				Object aux = aBi[f][c + 1];
 				aBi[f][c + 1] = aBi[f][c];
 				aBi[f][c] = aux;
@@ -213,15 +140,18 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 				ImageIcon im = new ImageIcon("Imagenes\\PacmanConFondo.png");
 				im.setDescription("Imagenes\\PacmanConFondo.png");
 				((JLabel) aBi[f][c]).setIcon(im);
+				ImageIcon im2 = new ImageIcon("Imagenes\\Fondo.png");
+				im2.setDescription("Imagenes\\Fondo.png");
+				((JLabel) aBi[f][c-1]).setIcon(im2);
 				cambiarPanel();
+			}else if(((ImageIcon) ((JLabel) aBi[f][c+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
+				break;
 			}
 			
 			break;	
 		case KeyEvent.VK_LEFT:	
-			/*System.out.println("abajo");
-			dir = 2;
-			run();*/
-			if(c>0) {
+			if(c>0 && (((ImageIcon) ((JLabel) aBi[f][c-1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Bolita.png"))||
+					(((ImageIcon) ((JLabel) aBi[f][c-1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Fondo.png"))) {
 				Object aux = aBi[f][c - 1];
 				aBi[f][c - 1] = aBi[f][c];
 				aBi[f][c] = aux;
@@ -229,14 +159,17 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 				ImageIcon im = new ImageIcon("Imagenes\\PacmanIzquierda.png");
 				im.setDescription("Imagenes\\PacmanIzquierda.png");
 				((JLabel) aBi[f][c]).setIcon(im);
+				ImageIcon im2 = new ImageIcon("Imagenes\\Fondo.png");
+				im2.setDescription("Imagenes\\Fondo.png");
+				((JLabel) aBi[f][c+1]).setIcon(im2);
 				cambiarPanel();
+			}else if(((ImageIcon) ((JLabel) aBi[f][c-1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
+				break;
 			}
 			break;
-		case KeyEvent.VK_UP :
-			/*System.out.println("derecha");
-			dir = 3;
-			run();	*/	
-			if(f>=0) {
+		case KeyEvent.VK_UP :	
+			if(f>=0 && (((ImageIcon) ((JLabel) aBi[f-1][c]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Bolita.png"))||
+					(((ImageIcon) ((JLabel) aBi[f-1][c]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Fondo.png"))) {
 				Object aux = aBi[f - 1][c];
 				aBi[f -1][c] = aBi[f][c];
 				aBi[f][c] = aux;
@@ -244,14 +177,17 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 				ImageIcon im = new ImageIcon("Imagenes\\PacmanArriba.png");
 				im.setDescription("Imagenes\\PacmanArriba.png");
 				((JLabel) aBi[f][c]).setIcon(im);
+				ImageIcon im2 = new ImageIcon("Imagenes\\Fondo.png");
+				im2.setDescription("Imagenes\\Fondo.png");
+				((JLabel) aBi[f+1][c]).setIcon(im2);
 				cambiarPanel();
+			}else if(((ImageIcon) ((JLabel) aBi[f-1][c]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
+				break;
 			}
 			break;
 		case KeyEvent.VK_DOWN:	
-			/*System.out.println("izquierda");
-			dir = 4;
-			run();*/
-			if(f<24) {
+			if(f<24 && (((ImageIcon) ((JLabel) aBi[f+1][c]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Bolita.png"))||
+					(((ImageIcon) ((JLabel) aBi[f+1][c]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Fondo.png"))) {
 				Object aux = aBi[f + 1][c];
 				aBi[f + 1][c] = aBi[f][c];
 				aBi[f][c] = aux;
@@ -259,15 +195,34 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 				ImageIcon im = new ImageIcon("Imagenes\\PacmanAbajo.png");
 				im.setDescription("Imagenes\\PacmanAbajo.png");
 				((JLabel) aBi[f][c]).setIcon(im);
+				ImageIcon im2 = new ImageIcon("Imagenes\\Fondo.png");
+				im2.setDescription("Imagenes\\Fondo.png");
+				((JLabel) aBi[f-1][c]).setIcon(im2);
 				cambiarPanel();		
+			}else if(((ImageIcon) ((JLabel) aBi[f+1][c]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
+				break;
 			}
 			break;
 		}
 	}
 
 	public void run() {
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
-		switch(dir) {
+
+		/*switch(dir) {
 		case 1 : //mover hacia arriba
 			//while
 			if(pacman.getY()>1 && Icono.puedeAvanzar(dir,pacman.getX(),pacman.getY())== true && Icono.dentroTablero(pacman.getX(), pacman.getY())==true) {
@@ -372,7 +327,7 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 
 			}
 			break;
-		}
+		}*/
 		
 	}
 	
