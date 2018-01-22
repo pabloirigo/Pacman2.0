@@ -57,6 +57,16 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 		//aBi = GestionFicheros.volcarFicheroArray(nomfich);
 		for (int i = 0; i < aBi.length; i++) {
 			for (int j = 0; j < aBi[0].length; j++) {
+				
+				JLabel l = (JLabel)aBi[i][j];
+				ImageIcon im = (ImageIcon)l.getIcon();
+				if(!im.getDescription().equals("Imagenes\\PacmanConFondo.png") && !im.getDescription().equals("Imagenes\\Pared.png") ){
+					ImageIcon im2 = new ImageIcon("Imagenes\\Bolita.png");
+					im2.setDescription("Imagenes\\Bolita.png");
+					((JLabel)aBi[i][j]).setIcon(im2);
+										
+				}
+				
 				panelCentro.add((JLabel) aBi[i][j]);
 				System.out.println(((ImageIcon) ((JLabel) aBi[i][j]).getIcon()).getDescription());
 				if (((ImageIcon) ((JLabel) aBi[i][j]).getIcon()).getDescription()
@@ -144,6 +154,14 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 //			}
 //		}*/
 	}
+	
+	public void comeBolita(Object abi) {
+		
+		
+		
+		
+	}
+	
 	
 	public void cambiarPanel() {
 		panelCentro.removeAll();
