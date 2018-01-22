@@ -176,13 +176,15 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 			/*System.out.println("arriba");
 			dir = 1;
 			run();*/
-			if(c<25) {
+			if(c<24) {
 				Object aux = aBi[f][c + 1];
 				aBi[f][c + 1] = aBi[f][c];
 				aBi[f][c] = aux;
 				c++;
+				ImageIcon im = new ImageIcon("Imagenes\\PacmanConFondo.png");
+				im.setDescription("Imagenes\\PacmanConFondo.png");
+				((JLabel) aBi[f][c]).setIcon(im);
 				cambiarPanel();
-				System.out.println("Derecha");
 			}
 			
 			break;	
@@ -195,39 +197,42 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 				aBi[f][c - 1] = aBi[f][c];
 				aBi[f][c] = aux;
 				c--;
+				ImageIcon im = new ImageIcon("Imagenes\\PacmanIzquierda.png");
+				im.setDescription("Imagenes\\PacmanIzquierda.png");
+				((JLabel) aBi[f][c]).setIcon(im);
 				cambiarPanel();
-				System.out.println("Izquierda");
 			}
 			break;
 		case KeyEvent.VK_UP :
 			/*System.out.println("derecha");
 			dir = 3;
 			run();	*/	
-			if(f>0) {
+			if(f>=0) {
 				Object aux = aBi[f - 1][c];
 				aBi[f -1][c] = aBi[f][c];
 				aBi[f][c] = aux;
 				f--;
+				ImageIcon im = new ImageIcon("Imagenes\\PacmanArriba.png");
+				im.setDescription("Imagenes\\PacmanArriba.png");
+				((JLabel) aBi[f][c]).setIcon(im);
 				cambiarPanel();
-				System.out.println("Arriba");
 			}
 			break;
 		case KeyEvent.VK_DOWN:	
 			/*System.out.println("izquierda");
 			dir = 4;
 			run();*/
-			System.out.println("Abajo");
-			if(f<25) {
+			if(f<24) {
 				Object aux = aBi[f + 1][c];
 				aBi[f + 1][c] = aBi[f][c];
 				aBi[f][c] = aux;
 				f++;
-				cambiarPanel();
-				System.out.println("Abajo");
+				ImageIcon im = new ImageIcon("Imagenes\\PacmanAbajo.png");
+				im.setDescription("Imagenes\\PacmanAbajo.png");
+				((JLabel) aBi[f][c]).setIcon(im);
+				cambiarPanel();		
 			}
 			break;
-				
-			
 		}
 	}
 
