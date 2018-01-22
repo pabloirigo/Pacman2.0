@@ -101,22 +101,50 @@ public class VentanaPrincipal extends JFrame {
 							}
 							label = (JLabel) ois.readObject();
 						}
-						ois.close();*/
+						ois.close();
 						Object aBi[][] = GestionFicheros.volcarFicheroArray(fc.getSelectedFile());
 						VentanaNivel ventNivel = new VentanaNivel(aBi);
 						ventNivel.setLocationRelativeTo(null);
 						ventNivel.setVisible(true);
-						ventanaPrin.dispose();
-						
-						
-						
-						
-						
-						
-						
-						
-				
+						ventanaPrin.dispose();*/
 
+					FileInputStream fis;
+					try {
+						System.out.println("ENTRA");
+						fis = new FileInputStream(fc.getSelectedFile());
+						System.out.println("ABRE EL FICHERO");
+						ObjectInputStream ois = new ObjectInputStream(fis);
+						System.out.println("EN MODO OBJECT");
+						Object aBi[][] = new Object[25][25];
+						JLabel l=(JLabel)ois.readObject();
+						int i=0,j=0;
+						while(l!=null){
+							aBi[i][j]=l;
+							j++;
+							if(j==25){
+								i++;
+								j=0;
+							}
+							l=(JLabel)ois.readObject();
+						}
+						ois.close();
+						VentanaNivel nivel = new VentanaNivel(aBi); 
+						nivel.setLocationRelativeTo(null);
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						System.out.println("E1");
+					} catch (IOException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+						System.out.println("E2");
+					} catch (ClassNotFoundException e3) {
+						// TODO Auto-generated catch block
+						e3.printStackTrace();
+						System.out.println("E3");
+					}
+				
+				
 				}
 			}
 		});

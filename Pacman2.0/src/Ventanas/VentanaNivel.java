@@ -34,6 +34,7 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 		
 
 		VentanaNivel.aBi = aBi;
+		addKeyListener(this);
 		System.out.println(VentanaNivel.aBi.length);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 650);
@@ -125,10 +126,7 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 			}
 		}
 		
-		
-		
-		
-//		Tablero.inicializarBolitas();
+/*		Tablero.inicializarBolitas();
 //		boolean aPosicionesBolitas[][] = new boolean[ALTURA_ARRAY][ANCHURA_ARRAY];
 //		int i, j;
 //		//int posXBolita = 0,posYBolita = 0 ;
@@ -144,7 +142,7 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 //					
 //				}
 //			}
-//		}
+//		}*/
 	}
 	
 	public void cambiarPanel() {
@@ -167,35 +165,66 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 		// TODO Auto-generated method stub
 		
 	}
-	public void keyPressed(KeyEvent e) {
+	public void keyPressed(KeyEvent k) {
 		
 		// TODO Auto-generated method stub
-		int keyCode = e.getKeyCode();
-
-		switch(keyCode) {
-		case KeyEvent.VK_UP:
+		switch(k.getKeyCode()) {
+		case KeyEvent.VK_RIGHT:
 			//no funciona el run, crashea por que no detecta nada en el array al mover el pacman.
 			//en teoria si que hay datos cargados en el array pero no detecta.
 			//se incializa el array en la clase ventanaNivel.
-			
-			System.out.println("arriba");
+			/*System.out.println("arriba");
 			dir = 1;
-			run();
+			run();*/
+			if(c<25) {
+				Object aux = aBi[f][c + 1];
+				aBi[f][c + 1] = aBi[f][c];
+				aBi[f][c] = aux;
+				c++;
+				cambiarPanel();
+				System.out.println("Derecha");
+			}
+			
 			break;	
-		case KeyEvent.VK_DOWN:	
-			System.out.println("abajo");
-			dir = 2;
-			run();
-			break;
-		case KeyEvent.VK_RIGHT :
-			System.out.println("derecha");
-			dir = 3;
-			run();			
-			break;
 		case KeyEvent.VK_LEFT:	
-			System.out.println("izquierda");
+			/*System.out.println("abajo");
+			dir = 2;
+			run();*/
+			if(c>0) {
+				Object aux = aBi[f][c - 1];
+				aBi[f][c - 1] = aBi[f][c];
+				aBi[f][c] = aux;
+				c--;
+				cambiarPanel();
+				System.out.println("Izquierda");
+			}
+			break;
+		case KeyEvent.VK_UP :
+			/*System.out.println("derecha");
+			dir = 3;
+			run();	*/	
+			if(f>0) {
+				Object aux = aBi[f - 1][c];
+				aBi[f -1][c] = aBi[f][c];
+				aBi[f][c] = aux;
+				f--;
+				cambiarPanel();
+				System.out.println("Arriba");
+			}
+			break;
+		case KeyEvent.VK_DOWN:	
+			/*System.out.println("izquierda");
 			dir = 4;
-			run();
+			run();*/
+			System.out.println("Abajo");
+			if(f<25) {
+				Object aux = aBi[f + 1][c];
+				aBi[f + 1][c] = aBi[f][c];
+				aBi[f][c] = aux;
+				f++;
+				cambiarPanel();
+				System.out.println("Abajo");
+			}
 			break;
 				
 			
