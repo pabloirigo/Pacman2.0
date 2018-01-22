@@ -155,7 +155,18 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 //		}*/
 	}
 	
-	public void comeBolita(Object abi) {
+	public void comeBolita(Object aBi[][]) {
+		
+		JLabel l = (JLabel)aBi[f][c];
+		ImageIcon im = (ImageIcon)l.getIcon();
+		
+		if(im.getDescription().equals("Imagenes\\Bolita.png")){
+			
+			
+			
+			
+			
+		}
 		
 		
 		
