@@ -10,6 +10,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction;
 
+import Threads.ThreadFantasmaAzul;
+import Threads.ThreadFantasmaNaranja;
+import Threads.ThreadFantasmaRojo;
+import Threads.ThreadFantasmaRosa;
 import TiposDeDatos.Fantasmas;
 import TiposDeDatos.GestionFicheros;
 import TiposDeDatos.Icono;
@@ -21,17 +25,24 @@ import java.awt.event.KeyListener;
 
 public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 
+	public static JPanel panelCentro;
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane, panelNorte, panelSur, panelCentro;
+	private JPanel contentPane, panelNorte, panelSur;//, panelCentro;
 	public static Object aBi[][];
 	public static int puntuacion=0;
 	public int columnas, filas;
 	Pacman pacman = new Pacman();
 	Fantasmas fantasma = new Fantasmas();
-	int dir, f, c, fBlinky, cBlinky, fInky, cInky, fClyde, cClyde, fPinky, cPinky;
+	public static int dir, f, c, fBlinky, cBlinky, fInky, cInky, fClyde, cClyde, fPinky, cPinky;
+	public static boolean choque  = false;
+	public static ThreadFantasmaAzul tfa;
+	public static ThreadFantasmaRojo tfr;
+	public static ThreadFantasmaNaranja tfn;
+	public static ThreadFantasmaRosa tfrs;
+	public boolean VentanaCorriendo;
 
 	public VentanaNivel(Object aBi[][]) {
-		
+
 
 		VentanaNivel.aBi = aBi;
 		addKeyListener(this);
@@ -52,12 +63,12 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 		panelCentro = new JPanel();
 		contentPane.add(panelCentro, BorderLayout.CENTER);
 		panelCentro.setLayout(new GridLayout(0, 25, 0, 0));
-		
-		
+
+
 		//aBi = GestionFicheros.volcarFicheroArray(nomfich);
 		for (int i = 0; i < aBi.length; i++) {
 			for (int j = 0; j < aBi[0].length; j++) {
-				
+
 				JLabel l = (JLabel)aBi[i][j];
 				ImageIcon im = (ImageIcon)l.getIcon();
 				if(!im.getDescription().equals("Imagenes\\PacmanConFondo.png") && !im.getDescription().equals("Imagenes\\Pared.png")
@@ -65,9 +76,9 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 					ImageIcon im2 = new ImageIcon("Imagenes\\Bolita.png");
 					im2.setDescription("Imagenes\\Bolita.png");
 					((JLabel)aBi[i][j]).setIcon(im2);
-										
+
 				}
-				
+
 				panelCentro.add((JLabel) aBi[i][j]);
 				System.out.println(((ImageIcon) ((JLabel) aBi[i][j]).getIcon()).getDescription());
 				if (((ImageIcon) ((JLabel) aBi[i][j]).getIcon()).getDescription()
@@ -96,17 +107,44 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 					fPinky = i;
 					cPinky = j;
 				}
+				
 			}
 			setVisible(true);
+			VentanaCorriendo = true; //se pone a false cuando se choca conun fantasma
 		}
 		System.out.println("El pacman está en " + f + "-" + c);	
 		System.out.println("El FantasmaAzul está en " + fInky + "-" + cInky);
 		System.out.println("El FantasmaRojo está en " + fBlinky + "-" + cBlinky);
 		System.out.println("El FantasmaNaranja está en " + fClyde + "-" + cClyde);
 		System.out.println("El FantasmaRosa está en " + fPinky + "-" + cPinky);
+		
+		
+		/**Inicializo el Hilo del fantasmaAzul**/
+	//	while(VentanaCorriendo == true) {
+		
+		tfa = new ThreadFantasmaAzul();
+		tfa.start();
+	//	}
+		/**Inicializo el Hilo del fantasmaRojo**/
+	//	while(VentanaCorriendo == true) {
+	//	tfr = new ThreadFantasmaRojo();
+	//	tfr.start();
+	//	}
+		/**Inicializo el Hilo del fantasmaRojo**/
+	//	while(VentanaCorriendo == true) {
+	//	tfn = new ThreadFantasmaNaranja();
+	//	tfn.start();
+	//	}
+		
+		/**Inicializo el Hilo del fantasmaRojo**/
+	//	while(VentanaCorriendo == true) {
+	//	tfrs = new ThreadFantasmaRosa();
+	//	tfrs.start();
+	//	}
 	}
 	
-	public void cambiarPanel() {
+
+	public  void cambiarPanel() {
 		panelCentro.removeAll();
 		for (int i = 0; i < aBi.length; i++) {
 			for (int j = 0; j < aBi[0].length; j++) {
@@ -115,19 +153,19 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 			setVisible(true);
 		}
 	}
-	
+
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	public void keyPressed(KeyEvent k) {
-		
+
 		// TODO Auto-generated method stub
 		switch(k.getKeyCode()) {
 		case KeyEvent.VK_RIGHT:
@@ -147,7 +185,7 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 			}else if(((ImageIcon) ((JLabel) aBi[f][c+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
 				break;
 			}
-			
+
 			break;	
 		case KeyEvent.VK_LEFT:	
 			if(c>0 && (((ImageIcon) ((JLabel) aBi[f][c-1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Bolita.png"))||
@@ -169,7 +207,7 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 			break;
 		case KeyEvent.VK_UP :	
 			if(f>=0 && (((ImageIcon) ((JLabel) aBi[f-1][c]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Bolita.png"))||
-					(((ImageIcon) ((JLabel) aBi[f-1][c]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Fondo.png"))) {
+			(((ImageIcon) ((JLabel) aBi[f-1][c]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Fondo.png"))) {
 				Object aux = aBi[f - 1][c];
 				aBi[f -1][c] = aBi[f][c];
 				aBi[f][c] = aux;
@@ -206,27 +244,95 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 		}
 	}
 
-	public void run() {
+	public void run()  {
+
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		double aux = Math.random();
+		if(aux>0 && aux <0.25) {
+			dir =1;//derecha
+		}else if( aux>0.25 && aux< 0.50) {
+			dir = 2;//izquierda
+		}else if( aux>0.50 && aux< 0.75) {
+			dir = 3;//arriba
+		}else if( aux>0.75 && aux< 1.0) {
+			dir = 4;//abajo
+		}
+
+		switch(dir) {
+
+		case 1:
+			while(!choque) {
+				if(c<24 && (((ImageIcon) ((JLabel) aBi[fInky][cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Bolita.png"))||
+						(((ImageIcon) ((JLabel) aBi[fInky][cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Fondo.png"))) {
+					Object aux2 = aBi[fInky][cInky + 1];
+					aBi[fInky][cInky + 1] = aBi[fInky][cInky];
+					aBi[fInky][cInky] = aux2;
+					cInky++;
+					ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
+					im.setDescription("Imagenes\\FantasmaAzul.png");
+					((JLabel) aBi[fInky][cInky]).setIcon(im);
+					cambiarPanel();
+
+				}else if(((ImageIcon) ((JLabel) aBi[fInky][cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
+					choque = true;
+					break;
+					
+				}
+				
+			}
+
+
+
+
+
+		case 2:
+			while(!choque) {
+				if(c<24 && (((ImageIcon) ((JLabel) aBi[fInky][cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Bolita.png"))||
+						(((ImageIcon) ((JLabel) aBi[fInky][cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Fondo.png"))) {
+					Object aux2 = aBi[fInky][cInky + 1];
+					aBi[fInky][cInky + 1] = aBi[fInky][cInky];
+					aBi[fInky][cInky] = aux2;
+					cInky++;
+					ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
+					im.setDescription("Imagenes\\FantasmaAzul.png");
+					((JLabel) aBi[fInky][cInky]).setIcon(im);
+					cambiarPanel();
+
+				}else if(((ImageIcon) ((JLabel) aBi[fInky][cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
+					
+					break;
+				}
+				
+			}
+			
+
+		case 3:
+			break;
+
+		case 4:
+			break;
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 		/*switch(dir) {
 		case 1 : //mover hacia arriba
 			//while
 			if(pacman.getY()>1 && Icono.puedeAvanzar(dir,pacman.getX(),pacman.getY())== true && Icono.dentroTablero(pacman.getX(), pacman.getY())==true) {
-				
+
 				System.out.println("Entra al while caso 1");
 				//poner la direccion del pacman cuando se mueve, tengo que hacer una excepcion para cada imgane en movimientoç	
 				int cx = pacman.getX();
@@ -248,15 +354,15 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 					}
 				}
 				panelCentro.updateUI();
-				
-				
+
+
 			}		
 			break;
 		case 2 :// mover hacia abajo
 			if(pacman.getY()<560 && Icono.puedeAvanzar(dir,pacman.getX(),pacman.getY())== true && Icono.dentroTablero(pacman.getX(), pacman.getY())==true) {
 				System.out.println("Entra al while caso 1");
-				
-				
+
+
 				int cx = pacman.getX();
 				int cy = pacman.getY();
 				//JLabel lblArriba = (JLabel)aBi[cx][cy-1];
@@ -280,9 +386,9 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 			break;
 		case 3 : // mover hacia derecha
 			if(pacman.getY()<560 && Icono.puedeAvanzar(dir,pacman.getX(),pacman.getY())== true && Icono.dentroTablero(pacman.getX(), pacman.getY())==true) {
-				
 
-				
+
+
 				int cx = pacman.getX();
 				int cy = pacman.getY();
 				//JLabel lblArriba = (JLabel)aBi[cx][cy-1];
@@ -305,7 +411,7 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 			break;
 		case 4: // mover hacia izquierda
 			if(pacman.getY()<560 && Icono.puedeAvanzar(dir,pacman.getX(),pacman.getY())== true && Icono.dentroTablero(pacman.getX(), pacman.getY())==true) {
-				
+
 
 				int cx = pacman.getX();
 				int cy = pacman.getY();
@@ -328,8 +434,8 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 			}
 			break;
 		}*/
-		
+
 	}
-	
+
 
 }
