@@ -46,7 +46,6 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 
 		VentanaNivel.aBi = aBi;
 		addKeyListener(this);
-		System.out.println(VentanaNivel.aBi.length);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 650);
 		contentPane = new JPanel();
@@ -80,30 +79,24 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 				}
 
 				panelCentro.add((JLabel) aBi[i][j]);
-				System.out.println(((ImageIcon) ((JLabel) aBi[i][j]).getIcon()).getDescription());
 				if (((ImageIcon) ((JLabel) aBi[i][j]).getIcon()).getDescription()
 						.equalsIgnoreCase("Imagenes\\PacmanConFondo.png")) {
-					System.out.println("HE ENCONTRADO EL Pacman.");
 					f = i;
 					c = j;
 				}else if(((ImageIcon) ((JLabel) aBi[i][j]).getIcon()).getDescription()
 						.equalsIgnoreCase("Imagenes\\FantasmaAzul.png")) {
-					System.out.println("HE ENCONTRADO EL FantasmaAzul.");
 					fInky = i;
 					cInky = j;
 				}else if(((ImageIcon) ((JLabel) aBi[i][j]).getIcon()).getDescription()
 						.equalsIgnoreCase("Imagenes\\FantasmaRojo.png")) {
-					System.out.println("HE ENCONTRADO EL FantasmaRojo.");
 					fBlinky = i;
 					cBlinky = j;
 				}else if(((ImageIcon) ((JLabel) aBi[i][j]).getIcon()).getDescription()
 						.equalsIgnoreCase("Imagenes\\FantasmaNaranja.png")) {
-					System.out.println("HE ENCONTRADO EL FantasmaNaranja.");
 					fClyde = i;
 					cClyde = j;
 				}else if(((ImageIcon) ((JLabel) aBi[i][j]).getIcon()).getDescription()
 						.equalsIgnoreCase("Imagenes\\FantasmaRosa.png")) {
-					System.out.println("HE ENCONTRADO EL FantasmaRosa.");
 					fPinky = i;
 					cPinky = j;
 				}
@@ -223,7 +216,7 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 				break;
 			}
 			break;
-		case KeyEvent.VK_DOWN:	
+		case KeyEvent.VK_DOWN:
 			if(f<24 && (((ImageIcon) ((JLabel) aBi[f+1][c]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Bolita.png"))||
 					(((ImageIcon) ((JLabel) aBi[f+1][c]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Fondo.png"))) {
 				Object aux = aBi[f + 1][c];
@@ -280,11 +273,7 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 				}
 				
 			}
-
-
-
-
-
+			
 		case 2:
 			while(!choque) {
 				if(c<24 && (((ImageIcon) ((JLabel) aBi[fInky][cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Bolita.png"))||
@@ -312,22 +301,8 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 		case 4:
 			break;
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		
+		/*No se ni lo que es pero igual en un futuro sirve de algo*/
 		/*switch(dir) {
 		case 1 : //mover hacia arriba
 			//while
