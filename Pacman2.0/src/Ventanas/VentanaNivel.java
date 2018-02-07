@@ -115,23 +115,23 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 		/**Inicializo el Hilo del fantasmaAzul**/
 	//	while(VentanaCorriendo == true) {
 		
-		tfa = new ThreadFantasmaAzul();
-		tfa.start();
+		//tfa = new ThreadFantasmaAzul();
+		//tfa.start();
 	//	}
 		/**Inicializo el Hilo del fantasmaRojo**/
 	//	while(VentanaCorriendo == true) {
 	//	tfr = new ThreadFantasmaRojo();
-	//	tfr.start();
+		//tfr.start();
 	//	}
 		/**Inicializo el Hilo del fantasmaRojo**/
 	//	while(VentanaCorriendo == true) {
-	//	tfn = new ThreadFantasmaNaranja();
-	//	tfn.start();
+		//tfn = new ThreadFantasmaNaranja();
+		//tfn.start();
 	//	}
 		
 		/**Inicializo el Hilo del fantasmaRojo**/
 	//	while(VentanaCorriendo == true) {
-	//	tfrs = new ThreadFantasmaRosa();
+//		tfrs = new ThreadFantasmaRosa();
 	//	tfrs.start();
 	//	}
 	}
@@ -237,70 +237,77 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 		}
 	}
 
-	public void run()  {
 
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
 		
-		double aux = Math.random();
-		if(aux>0 && aux <0.25) {
-			dir =1;//derecha
-		}else if( aux>0.25 && aux< 0.50) {
-			dir = 2;//izquierda
-		}else if( aux>0.50 && aux< 0.75) {
-			dir = 3;//arriba
-		}else if( aux>0.75 && aux< 1.0) {
-			dir = 4;//abajo
-		}
+	}
 
-		switch(dir) {
-
-		case 1:
-			while(!choque) {
-				if(c<24 && (((ImageIcon) ((JLabel) aBi[fInky][cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Bolita.png"))||
-						(((ImageIcon) ((JLabel) aBi[fInky][cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Fondo.png"))) {
-					Object aux2 = aBi[fInky][cInky + 1];
-					aBi[fInky][cInky + 1] = aBi[fInky][cInky];
-					aBi[fInky][cInky] = aux2;
-					cInky++;
-					ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
-					im.setDescription("Imagenes\\FantasmaAzul.png");
-					((JLabel) aBi[fInky][cInky]).setIcon(im);
-					cambiarPanel();
-
-				}else if(((ImageIcon) ((JLabel) aBi[fInky][cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
-					choque = true;
-					break;
-					
-				}
-				
-			}
-			
-		case 2:
-			while(!choque) {
-				if(c<24 && (((ImageIcon) ((JLabel) aBi[fInky][cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Bolita.png"))||
-						(((ImageIcon) ((JLabel) aBi[fInky][cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Fondo.png"))) {
-					Object aux2 = aBi[fInky][cInky + 1];
-					aBi[fInky][cInky + 1] = aBi[fInky][cInky];
-					aBi[fInky][cInky] = aux2;
-					cInky++;
-					ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
-					im.setDescription("Imagenes\\FantasmaAzul.png");
-					((JLabel) aBi[fInky][cInky]).setIcon(im);
-					cambiarPanel();
-
-				}else if(((ImageIcon) ((JLabel) aBi[fInky][cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
-					
-					break;
-				}
-				
-			}
-			
-
-		case 3:
-			break;
-
-		case 4:
-			break;
-		}
+//	public void run()  {
+//
+//		
+//		double aux = Math.random();
+//		if(aux>0 && aux <0.25) {
+//			dir =1;//derecha
+//		}else if( aux>0.25 && aux< 0.50) {
+//			dir = 2;//izquierda
+//		}else if( aux>0.50 && aux< 0.75) {
+//			dir = 3;//arriba
+//		}else if( aux>0.75 && aux< 1.0) {
+//			dir = 4;//abajo
+//		}
+//
+//		switch(dir) {
+//
+//		case 1:
+//			while(!choque) {
+//				if(c<24 && (((ImageIcon) ((JLabel) aBi[fInky][cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Bolita.png"))||
+//						(((ImageIcon) ((JLabel) aBi[fInky][cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Fondo.png"))) {
+//					Object aux2 = aBi[fInky][cInky + 1];
+//					aBi[fInky][cInky + 1] = aBi[fInky][cInky];
+//					aBi[fInky][cInky] = aux2;
+//					cInky++;
+//					ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
+//					im.setDescription("Imagenes\\FantasmaAzul.png");
+//					((JLabel) aBi[fInky][cInky]).setIcon(im);
+//					cambiarPanel();
+//
+//				}else if(((ImageIcon) ((JLabel) aBi[fInky][cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
+//					choque = true;
+//					break;
+//					
+//				}
+//				
+//			}
+//			
+//		case 2:
+//			while(!choque) {
+//				if(c<24 && (((ImageIcon) ((JLabel) aBi[fInky][cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Bolita.png"))||
+//						(((ImageIcon) ((JLabel) aBi[fInky][cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Fondo.png"))) {
+//					Object aux2 = aBi[fInky][cInky + 1];
+//					aBi[fInky][cInky + 1] = aBi[fInky][cInky];
+//					aBi[fInky][cInky] = aux2;
+//					cInky++;
+//					ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
+//					im.setDescription("Imagenes\\FantasmaAzul.png");
+//					((JLabel) aBi[fInky][cInky]).setIcon(im);
+//					cambiarPanel();
+//
+//				}else if(((ImageIcon) ((JLabel) aBi[fInky][cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
+//					
+//					break;
+//				}
+//				
+//			}
+//			
+//
+//		case 3:
+//			break;
+//
+//		case 4:
+//			break;
+//		}
 		
 		/*No se ni lo que es pero igual en un futuro sirve de algo*/
 		/*switch(dir) {
@@ -413,4 +420,4 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 	}
 
 
-}
+//}

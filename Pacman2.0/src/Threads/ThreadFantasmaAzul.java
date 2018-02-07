@@ -12,7 +12,7 @@ public class ThreadFantasmaAzul extends Thread{
 		
 	}
 	public void run() {
-		while(true) { //Mientras no se lo haya comido el pacman
+		while(true) { //Mientras no se lo haya comido el pacman // falta poner la condicion de que se lo haya comido el pacman
 			boolean choque= false;
 			
 			// TODO Auto-generated constructor stub
@@ -41,7 +41,6 @@ public class ThreadFantasmaAzul extends Thread{
 						ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
 						im.setDescription("Imagenes\\FantasmaAzul.png");
 						((JLabel) VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky]).setIcon(im);
-						//VentanaNivel.cambiarPanel();//llamar desde el run no es posible estatic
 						try {
 							Thread.sleep(500);
 						} catch (InterruptedException e) {
@@ -76,7 +75,6 @@ public class ThreadFantasmaAzul extends Thread{
 						ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
 						im.setDescription("Imagenes\\FantasmaAzul.png");
 						((JLabel) VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky]).setIcon(im);
-					//	VentanaNivel.cambiarPanel();//llamar desde el run no es posible estatic
 						try {
 							Thread.sleep(500);
 						} catch (InterruptedException e) {
@@ -112,7 +110,6 @@ public class ThreadFantasmaAzul extends Thread{
 						ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
 						im.setDescription("Imagenes\\FantasmaAzul.png");
 						((JLabel) VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky]).setIcon(im);
-					//	VentanaNivel.cambiarPanel();//llamar desde el run no es posible estatic
 						try {
 							Thread.sleep(500);
 						} catch (InterruptedException e) {
@@ -148,7 +145,6 @@ public class ThreadFantasmaAzul extends Thread{
 						ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
 						im.setDescription("Imagenes\\FantasmaAzul.png");
 						((JLabel) VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky]).setIcon(im);
-						//VentanaNivel.cambiarPanel();//llamar desde el run no es posible estatic
 						try {
 							Thread.sleep(500);
 						} catch (InterruptedException e) {
