@@ -115,24 +115,24 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 		/**Inicializo el Hilo del fantasmaAzul**/
 	//	while(VentanaCorriendo == true) {
 		
-		//tfa = new ThreadFantasmaAzul();
-		//tfa.start();
+		tfa = new ThreadFantasmaAzul();
+		tfa.start();
+	//	}
+		/**Inicializo el Hilo del fantasmaRojo**/
+		//while(VentanaCorriendo == true) {
+		tfr = new ThreadFantasmaRojo();
+		tfr.start();
 	//	}
 		/**Inicializo el Hilo del fantasmaRojo**/
 	//	while(VentanaCorriendo == true) {
-	//	tfr = new ThreadFantasmaRojo();
-		//tfr.start();
-	//	}
-		/**Inicializo el Hilo del fantasmaRojo**/
-	//	while(VentanaCorriendo == true) {
-		//tfn = new ThreadFantasmaNaranja();
-		//tfn.start();
+		tfn = new ThreadFantasmaNaranja();
+		tfn.start();
 	//	}
 		
 		/**Inicializo el Hilo del fantasmaRojo**/
 	//	while(VentanaCorriendo == true) {
-//		tfrs = new ThreadFantasmaRosa();
-	//	tfrs.start();
+		tfrs = new ThreadFantasmaRosa();
+		tfrs.start();
 	//	}
 	}
 	
