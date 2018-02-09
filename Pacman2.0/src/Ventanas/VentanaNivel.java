@@ -1,22 +1,16 @@
 package Ventanas;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction;
-
 import Threads.ThreadFantasmaAzul;
 import Threads.ThreadFantasmaNaranja;
 import Threads.ThreadFantasmaRojo;
 import Threads.ThreadFantasmaRosa;
 import TiposDeDatos.Fantasmas;
-import TiposDeDatos.GestionFicheros;
-import TiposDeDatos.Icono;
 import TiposDeDatos.Pacman;
 
 import java.awt.GridLayout;
@@ -63,8 +57,6 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 		contentPane.add(panelCentro, BorderLayout.CENTER);
 		panelCentro.setLayout(new GridLayout(0, 25, 0, 0));
 
-
-		//aBi = GestionFicheros.volcarFicheroArray(nomfich);
 		for (int i = 0; i < aBi.length; i++) {
 			for (int j = 0; j < aBi[0].length; j++) {
 
@@ -113,27 +105,21 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 		
 		
 		/**Inicializo el Hilo del fantasmaAzul**/
-	//	while(VentanaCorriendo == true) {
-		
 		tfa = new ThreadFantasmaAzul();
 		tfa.start();
-	//	}
+
 		/**Inicializo el Hilo del fantasmaRojo**/
-		//while(VentanaCorriendo == true) {
 		tfr = new ThreadFantasmaRojo();
 		tfr.start();
-	//	}
-		/**Inicializo el Hilo del fantasmaRojo**/
-	//	while(VentanaCorriendo == true) {
-		tfn = new ThreadFantasmaNaranja();
-		tfn.start();
-	//	}
 		
 		/**Inicializo el Hilo del fantasmaRojo**/
-	//	while(VentanaCorriendo == true) {
+		tfn = new ThreadFantasmaNaranja();
+		tfn.start();
+		
+		/**Inicializo el Hilo del fantasmaRojo**/
 		tfrs = new ThreadFantasmaRosa();
 		tfrs.start();
-	//	}
+
 	}
 	
 
@@ -418,6 +404,3 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 		}*/
 
 	}
-
-
-//}

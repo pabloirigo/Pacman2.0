@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import BaseDeDatos.BD;
-import TiposDeDatos.GestionFicheros;
 import TiposDeDatos.Usuario;
 
 import javax.swing.JLabel;

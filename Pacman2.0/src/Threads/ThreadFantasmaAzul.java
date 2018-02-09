@@ -28,33 +28,37 @@ public class ThreadFantasmaAzul extends Thread{
 			}else if( aux>0.75 && aux< 1.0) {
 				dir = 4;//abajo
 			}
-			dir = 2;
 			switch(dir) {
 	
 			case 1:
 				while(!choque) {
 					if(VentanaNivel.cInky<24 && (((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Bolita.png"))||
 							(((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Fondo.png"))) {
-						Object aux2 = VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky + 1];
-						VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky + 1] = VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky];
-						VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky] = aux2;
+//						Object aux2 = VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky + 1];
+//						VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky + 1] = VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky];
+//						VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky] = aux2;
+//						VentanaNivel.cInky++;
+//						ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
+//						im.setDescription("Imagenes\\FantasmaAzul.png");
+//						((JLabel) VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky]).setIcon(im);
+						Icon aux2 = ((JLabel)VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky + 1]).getIcon();
+						Icon aux1 = ((JLabel)VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky]).getIcon();
+						((JLabel)VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky + 1]).setIcon(aux1);
+						((JLabel)VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky]).setIcon(aux2);
 						VentanaNivel.cInky++;
-						ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
-						im.setDescription("Imagenes\\FantasmaAzul.png");
-						((JLabel) VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky]).setIcon(im);
 						try {
 							Thread.sleep(500);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						VentanaNivel.panelCentro.removeAll();
-						for (int i = 0; i < VentanaNivel.aBi.length; i++) {
-							for (int j = 0; j < VentanaNivel.aBi[0].length; j++) {
-								VentanaNivel.panelCentro.add((JLabel) VentanaNivel.aBi[i][j]);
-							}
-							VentanaNivel.panelCentro.updateUI();
-						}
+//						VentanaNivel.panelCentro.removeAll();
+//						for (int i = 0; i < VentanaNivel.aBi.length; i++) {
+//							for (int j = 0; j < VentanaNivel.aBi[0].length; j++) {
+//								VentanaNivel.panelCentro.add((JLabel) VentanaNivel.aBi[i][j]);
+//							}
+//							VentanaNivel.panelCentro.updateUI();
+//						}
 						
 	
 					}else if( VentanaNivel.cInky<24 && ((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
@@ -72,14 +76,14 @@ public class ThreadFantasmaAzul extends Thread{
 //						Object aux2 = VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky - 1];
 //						VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky - 1] = VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky];
 //						VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky] = aux2;
+//						ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
+//						im.setDescription("Imagenes\\FantasmaAzul.png");
+//						((JLabel) VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky]).setIcon(im);
 						Icon aux2 = ((JLabel)VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky - 1]).getIcon();
 						Icon aux1 = ((JLabel)VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky]).getIcon();
 						((JLabel)VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky - 1]).setIcon(aux1);
 						((JLabel)VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky]).setIcon(aux2);
 						VentanaNivel.cInky--;
-//						ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
-//						im.setDescription("Imagenes\\FantasmaAzul.png");
-//						((JLabel) VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky]).setIcon(im);
 						try {
 							Thread.sleep(500);
 						} catch (InterruptedException e) {
@@ -108,26 +112,31 @@ public class ThreadFantasmaAzul extends Thread{
 				while(!choque) {
 					if(VentanaNivel.cInky<24 && VentanaNivel.cInky>0 && VentanaNivel.cInky>0 && VentanaNivel.fInky>0 && (((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fInky-1][VentanaNivel.cInky]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Bolita.png"))||
 							(((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky-1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Fondo.png"))) {
-						Object aux2 = VentanaNivel.aBi[VentanaNivel.fInky-1][VentanaNivel.cInky ];
-						VentanaNivel.aBi[VentanaNivel.fInky-1][VentanaNivel.cInky ] = VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky];
-						VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky] = aux2;
+//						Object aux2 = VentanaNivel.aBi[VentanaNivel.fInky-1][VentanaNivel.cInky ];
+//						VentanaNivel.aBi[VentanaNivel.fInky-1][VentanaNivel.cInky ] = VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky];
+//						VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky] = aux2;
+//						VentanaNivel.fInky--;
+//						ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
+//						im.setDescription("Imagenes\\FantasmaAzul.png");
+//						((JLabel) VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky]).setIcon(im);
+						Icon aux2 = ((JLabel)VentanaNivel.aBi[VentanaNivel.fInky-1][VentanaNivel.cInky]).getIcon();
+						Icon aux1 = ((JLabel)VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky]).getIcon();
+						((JLabel)VentanaNivel.aBi[VentanaNivel.fInky-1][VentanaNivel.cInky]).setIcon(aux1);
+						((JLabel)VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky]).setIcon(aux2);
 						VentanaNivel.fInky--;
-						ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
-						im.setDescription("Imagenes\\FantasmaAzul.png");
-						((JLabel) VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky]).setIcon(im);
 						try {
 							Thread.sleep(500);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						VentanaNivel.panelCentro.removeAll();
-						for (int i = 0; i < VentanaNivel.aBi.length; i++) {
-							for (int j = 0; j < VentanaNivel.aBi[0].length; j++) {
-								VentanaNivel.panelCentro.add((JLabel) VentanaNivel.aBi[i][j]);
-							}
-							VentanaNivel.panelCentro.updateUI();
-						}
+//						VentanaNivel.panelCentro.removeAll();
+//						for (int i = 0; i < VentanaNivel.aBi.length; i++) {
+//							for (int j = 0; j < VentanaNivel.aBi[0].length; j++) {
+//								VentanaNivel.panelCentro.add((JLabel) VentanaNivel.aBi[i][j]);
+//							}
+//							VentanaNivel.panelCentro.updateUI();
+//						}
 	
 					}else if(VentanaNivel.cInky>0 && ((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fInky-1][VentanaNivel.cInky]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
 						choque = true;
@@ -143,26 +152,31 @@ public class ThreadFantasmaAzul extends Thread{
 				while(!choque) {
 					if(VentanaNivel.fInky<24 && (((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fInky+1][VentanaNivel.cInky]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Bolita.png"))||
 							(((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fInky+1][VentanaNivel.cInky]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Fondo.png"))) {
-						Object aux2 = VentanaNivel.aBi[VentanaNivel.fInky+1][VentanaNivel.cInky];
-						VentanaNivel.aBi[VentanaNivel.fInky+1][VentanaNivel.cInky ] = VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky];
-						VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky] = aux2;
+//						Object aux2 = VentanaNivel.aBi[VentanaNivel.fInky+1][VentanaNivel.cInky];
+//						VentanaNivel.aBi[VentanaNivel.fInky+1][VentanaNivel.cInky ] = VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky];
+//						VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky] = aux2;
+//						VentanaNivel.fInky++;
+//						ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
+//						im.setDescription("Imagenes\\FantasmaAzul.png");
+//						((JLabel) VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky]).setIcon(im);
+						Icon aux2 = ((JLabel)VentanaNivel.aBi[VentanaNivel.fInky+1][VentanaNivel.cInky]).getIcon();
+						Icon aux1 = ((JLabel)VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky]).getIcon();
+						((JLabel)VentanaNivel.aBi[VentanaNivel.fInky+1][VentanaNivel.cInky]).setIcon(aux1);
+						((JLabel)VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky]).setIcon(aux2);
 						VentanaNivel.fInky++;
-						ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
-						im.setDescription("Imagenes\\FantasmaAzul.png");
-						((JLabel) VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky]).setIcon(im);
 						try {
 							Thread.sleep(500);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						VentanaNivel.panelCentro.removeAll();
-						for (int i = 0; i < VentanaNivel.aBi.length; i++) {
-							for (int j = 0; j < VentanaNivel.aBi[0].length; j++) {
-								VentanaNivel.panelCentro.add((JLabel) VentanaNivel.aBi[i][j]);
-							}
-							VentanaNivel.panelCentro.updateUI();
-						}
+//						VentanaNivel.panelCentro.removeAll();
+//						for (int i = 0; i < VentanaNivel.aBi.length; i++) {
+//							for (int j = 0; j < VentanaNivel.aBi[0].length; j++) {
+//								VentanaNivel.panelCentro.add((JLabel) VentanaNivel.aBi[i][j]);
+//							}
+//							VentanaNivel.panelCentro.updateUI();
+//						}
 	
 					}else if(VentanaNivel.cInky<24 && ((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fInky+1][VentanaNivel.cInky]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
 						choque = true;

@@ -22,8 +22,6 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
-import javax.swing.JToggleButton;
-import java.awt.Color;
 import javax.swing.UIManager;
 
 public class VentanaEditor extends JFrame implements MouseListener {
@@ -36,10 +34,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 	private JComboBox<String> comboBox;
 	private Point puntoIni, puntoFin;
 	private ArrayList<String> fantasmas;
-	private int contadorPacman = 0;
 	private JLabel lblSeleccion;
-	private final static int Anchura_Label = 30;
-	private final static int Altura_Label = 30;
 	
 	private void inicializarConFondo() {
 		for (int i = 0; i < 25; i++) {
@@ -51,13 +46,7 @@ public class VentanaEditor extends JFrame implements MouseListener {
 			}
 		}
 	}
-
-	/*
-	 * private void cargarFotos() { for (String ruta : aFotos) { ImageIcon im =
-	 * new ImageIcon(ruta); im.setDescription(ruta); JLabel lblFoto = new
-	 * JLabel(im); panelCentro.add(lblFoto); } }
-	 */
-
+	
 	public VentanaEditor() {
 		descripcion = "Pared";
 		fantasmas = new ArrayList<String>();
@@ -231,9 +220,6 @@ public class VentanaEditor extends JFrame implements MouseListener {
 		panelCentro.setBackground(UIManager.getColor("Button.background"));
 		contentPane.add(panelCentro, BorderLayout.CENTER);
 		panelCentro.setLayout(new GridLayout(0, 25, 0, 0));
-		/*
-		 * Hay que aniadir al panelCentro un listener para los eventos de raton.
-		 */
 		panelCentro.addMouseListener(this);
 		inicializarConFondo();
 	}
@@ -276,21 +262,17 @@ public class VentanaEditor extends JFrame implements MouseListener {
 		Point p = e.getPoint();
 		JLabel lblFoto = (JLabel) panelCentro.getComponentAt(p);
 		String des = obtenerDescripcionLabel(lblFoto).substring(9, obtenerDescripcionLabel(lblFoto).length() - 4);
-		System.out.println(des);
 		if(des.equalsIgnoreCase("PacmanConFondo")) {
 			btnPacman.setEnabled(true);
 		}
 		switch (descripcion) {
 		case "Pared": {
-			// if (contadorPacman<1){
 			restaurarFantasma(des);
 			ImageIcon im = new ImageIcon("Imagenes\\Pared.png");
 			im.setDescription("Imagenes\\Pared.png");
 			lblFoto.setIcon(im);
 			actualizarCombo();
 			comboBox.setSelectedIndex(-1);
-			// contadorPacman++;
-			// }
 		}
 			break;
 		case "Fondo": {
@@ -328,7 +310,6 @@ public class VentanaEditor extends JFrame implements MouseListener {
 			ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
 			im.setDescription("Imagenes\\FantasmaAzul.png");
 			lblFoto.setIcon(im);
-			// comboBox.removeItem("Inky");
 			fantasmas.remove("Inky");
 			actualizarCombo();
 			comboBox.setSelectedIndex(-1);
@@ -340,7 +321,6 @@ public class VentanaEditor extends JFrame implements MouseListener {
 			ImageIcon im = new ImageIcon("Imagenes\\FantasmaRosa.png");
 			im.setDescription("Imagenes\\FantasmaRosa.png");
 			lblFoto.setIcon(im);
-			// comboBox.removeItem("Pinky");
 			fantasmas.remove("Pinky");
 			actualizarCombo();
 			comboBox.setSelectedIndex(-1);
@@ -352,7 +332,6 @@ public class VentanaEditor extends JFrame implements MouseListener {
 			ImageIcon im = new ImageIcon("Imagenes\\FantasmaRojo.png");
 			im.setDescription("Imagenes\\FantasmaRojo.png");
 			lblFoto.setIcon(im);
-			// comboBox.removeItem("Blinky");
 			fantasmas.remove("Blinky");
 			actualizarCombo();
 			comboBox.setSelectedIndex(-1);
@@ -364,7 +343,6 @@ public class VentanaEditor extends JFrame implements MouseListener {
 			ImageIcon im = new ImageIcon("Imagenes\\FantasmaNaranja.png");
 			im.setDescription("Imagenes\\FantasmaNaranja.png");
 			lblFoto.setIcon(im);
-			// comboBox.removeItem("Clyde");
 			fantasmas.remove("Clyde");
 			actualizarCombo();
 			comboBox.setSelectedIndex(-1);
