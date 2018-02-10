@@ -17,7 +17,7 @@ import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class VentanaNivel extends JFrame implements Runnable, KeyListener {
+public class VentanaNivel extends JFrame implements KeyListener {
 
 	public static JPanel panelCentro;
 	private static final long serialVersionUID = 1L;
@@ -105,18 +105,19 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 		
 		
 		/**Inicializo el Hilo del fantasmaAzul**/
+		
 		tfa = new ThreadFantasmaAzul();
 		tfa.start();
-
+		
 		/**Inicializo el Hilo del fantasmaRojo**/
 		tfr = new ThreadFantasmaRojo();
 		tfr.start();
-		
-		/**Inicializo el Hilo del fantasmaRojo**/
+//		
+//		/**Inicializo el Hilo del fantasmaRojo**/
 		tfn = new ThreadFantasmaNaranja();
 		tfn.start();
-		
-		/**Inicializo el Hilo del fantasmaRojo**/
+//		
+//		/**Inicializo el Hilo del fantasmaRojo**/
 		tfrs = new ThreadFantasmaRosa();
 		tfrs.start();
 
@@ -224,12 +225,7 @@ public class VentanaNivel extends JFrame implements Runnable, KeyListener {
 	}
 
 
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 //	public void run()  {
 //
 //		
