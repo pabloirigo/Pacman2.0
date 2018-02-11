@@ -2,21 +2,16 @@ package Ventanas;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import BaseDeDatos.BD;
 import TiposDeDatos.Usuario;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
-
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -165,6 +160,14 @@ public class VentanaPrincipal extends JFrame {
 		panelCentro.add(btnEditor);
 
 		btnScores = new JButton("Scores");
+		btnScores.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaScores ventScores = new VentanaScores(ventanaPrin);
+				ventScores.setLocationRelativeTo(null);
+				ventScores.setVisible(true);
+				dispose();
+			}
+		});
 		btnScores.setFont(new Font("DialogInput", Font.BOLD, 20));
 		btnScores.setBounds(130, 130, 130, 36);
 		panelCentro.add(btnScores);

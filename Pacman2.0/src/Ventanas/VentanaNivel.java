@@ -1,6 +1,7 @@
 package Ventanas;
 
 import java.awt.BorderLayout;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,6 +17,7 @@ import TiposDeDatos.Pacman;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.FlowLayout;
 
 public class VentanaNivel extends JFrame implements KeyListener {
 
@@ -34,6 +36,9 @@ public class VentanaNivel extends JFrame implements KeyListener {
 	public static ThreadFantasmaNaranja tfn;
 	public static ThreadFantasmaRosa tfrs;
 	public boolean VentanaCorriendo;
+	ImageIcon imagenPacman;
+	JLabel PacmanVida1, PacmanVida2, PacmanVida3;
+	int contadorVidasPacman = 3;
 
 	public VentanaNivel(Object aBi[][]) {
 
@@ -49,6 +54,7 @@ public class VentanaNivel extends JFrame implements KeyListener {
 
 		panelNorte = new JPanel();
 		contentPane.add(panelNorte, BorderLayout.NORTH);
+		panelNorte.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		panelSur = new JPanel();
 		contentPane.add(panelSur, BorderLayout.SOUTH);
@@ -56,6 +62,15 @@ public class VentanaNivel extends JFrame implements KeyListener {
 		panelCentro = new JPanel();
 		contentPane.add(panelCentro, BorderLayout.CENTER);
 		panelCentro.setLayout(new GridLayout(0, 25, 0, 0));
+		
+		imagenPacman = new ImageIcon ("Imagenes\\PacmanConFondo.png");
+		PacmanVida1 = new JLabel(imagenPacman);
+		PacmanVida2 = new JLabel(imagenPacman);
+		PacmanVida3 = new JLabel(imagenPacman);
+		panelNorte.add(PacmanVida1);
+		panelNorte.add(PacmanVida2);
+		panelNorte.add(PacmanVida3);
+		
 
 		for (int i = 0; i < aBi.length; i++) {
 			for (int j = 0; j < aBi[0].length; j++) {
@@ -67,6 +82,7 @@ public class VentanaNivel extends JFrame implements KeyListener {
 					ImageIcon im2 = new ImageIcon("Imagenes\\Bolita.png");
 					im2.setDescription("Imagenes\\Bolita.png");
 					((JLabel)aBi[i][j]).setIcon(im2);
+					puntuacion+=100;
 
 				}
 
@@ -112,12 +128,12 @@ public class VentanaNivel extends JFrame implements KeyListener {
 		/**Inicializo el Hilo del fantasmaRojo**/
 		tfr = new ThreadFantasmaRojo();
 		tfr.start();
-//		
-//		/**Inicializo el Hilo del fantasmaRojo**/
+		
+		/**Inicializo el Hilo del fantasmaRojo**/
 		tfn = new ThreadFantasmaNaranja();
 		tfn.start();
-//		
-//		/**Inicializo el Hilo del fantasmaRojo**/
+		
+		/**Inicializo el Hilo del fantasmaRojo**/
 		tfrs = new ThreadFantasmaRosa();
 		tfrs.start();
 
@@ -398,5 +414,8 @@ public class VentanaNivel extends JFrame implements KeyListener {
 			}
 			break;
 		}*/
+	
+		/*La idea es hacer un metodo para resetear al pacman en donde ha empezado cuando choque con un fantasma, y que  el contador de las vidas del pacman disminuya.
+		 * Y tam,bien acabar de implementar lo de la puuntuacion en la ventana scores.*/
 
 	}

@@ -23,27 +23,27 @@ public class ThreadFantasmaAzul extends Thread{
 			int dx = 0;
 			int dy=0;
 			int aux3 =0 ;
-			int dz = 0;
+			//int dz = 0;
 			if(aux>0 && aux <0.25) {			
 				dir =1;//derecha
 				dy = 1;
 				aux3 =1;	
-				dz = 24;
+				//dz = 24;
 			}else if( aux>0.25 && aux< 0.50) {
 				dir = 2;//izquierda
 				dy = -1;
 				aux3 =-1;
-				dz = 0;
+				//dz = 0;
 			}else if( aux>0.50 && aux< 0.75) {
 				dir = 3;//arriba
 				dx = -1;
 				aux3 =-1;
-				dz = 0;
+				//dz = 0;
 			}else if( aux>0.75 && aux< 1.0) {
 				dir = 4;//abajo
 				dx = 1;
 				aux3 =1;
-				dz = 24;
+				//dz = 24;
 			}
 			while(!choque) {
 				
@@ -89,10 +89,10 @@ public class ThreadFantasmaAzul extends Thread{
 				}
 
 
-			}else if(VentanaNivel.cInky == 23 || VentanaNivel.fInky == 1 || VentanaNivel.cInky == 1 || VentanaNivel.fInky == 23 || ((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fInky+dx][VentanaNivel.cInky+dy]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
+			/*}else if(VentanaNivel.cInky == 24 || VentanaNivel.fInky == 1 || VentanaNivel.cInky == 0 || VentanaNivel.fInky == 24 || ((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fInky+dx][VentanaNivel.cInky+dy]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
 				System.out.println("hola mundo");
 				choque = true;
-				break;					
+				break;	*/				
 			}else
 				choque  = true;
 			}
