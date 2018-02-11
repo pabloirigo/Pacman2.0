@@ -43,13 +43,7 @@ public class ThreadFantasmaRojo extends Thread{
 				while(!choque) {
 				if(VentanaNivel.cBlinky<24 && (((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fBlinky+dx][VentanaNivel.cBlinky+ dy]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Bolita.png"))||
 						(((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fBlinky+dx][VentanaNivel.cBlinky+ dy]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Fondo.png"))) {
-					//						Object aux2 = VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky + 1];
-					//						VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky + 1] = VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky];
-					//						VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky] = aux2;
-					//						VentanaNivel.cBlinky++;
-					//						ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
-					//						im.setDescription("Imagenes\\FantasmaAzul.png");
-					//						((JLabel) VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky]).setIcon(im);
+					
 					Icon aux2 = ((JLabel)VentanaNivel.aBi[VentanaNivel.fBlinky+ dx][VentanaNivel.cBlinky + dy]).getIcon();
 					Icon aux1 = ((JLabel)VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky]).getIcon();
 					((JLabel)VentanaNivel.aBi[VentanaNivel.fBlinky+ dx][VentanaNivel.cBlinky + dy]).setIcon(aux1);
@@ -71,14 +65,7 @@ public class ThreadFantasmaRojo extends Thread{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					//						VentanaNivel.panelCentro.removeAll();
-					//						for (int i = 0; i < VentanaNivel.aBi.length; i++) {
-					//							for (int j = 0; j < VentanaNivel.aBi[0].length; j++) {
-					//								VentanaNivel.panelCentro.add((JLabel) VentanaNivel.aBi[i][j]);
-					//							}
-					//							VentanaNivel.panelCentro.updateUI();
-					//						}
-
+					
 
 				}else if( VentanaNivel.cBlinky<24 && ((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
 					choque = true;
@@ -88,167 +75,7 @@ public class ThreadFantasmaRojo extends Thread{
 				}
 			}
 
-//			switch(dir) {
-//
-//			case 1:
-//				while(!choque) {
-//					if(VentanaNivel.cBlinky<24 && (((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Bolita.png"))||
-//							(((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Fondo.png"))) {
-////						Object aux2 = VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky + 1];
-////						VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky + 1] = VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky];
-////						VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky] = aux2;
-////						VentanaNivel.cBlinky++;
-////						ImageIcon im = new ImageIcon("Imagenes\\FantasmaRojo.png");
-////						im.setDescription("Imagenes\\FantasmaRojo.png");
-////						((JLabel) VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky]).setIcon(im);
-//						Icon aux2 = ((JLabel)VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky + 1]).getIcon();
-//						Icon aux1 = ((JLabel)VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky]).getIcon();
-//						((JLabel)VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky + 1]).setIcon(aux1);
-//						((JLabel)VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky]).setIcon(aux2);
-//						VentanaNivel.cBlinky++;
-//						try {
-//							Thread.sleep(500);
-//						} catch (InterruptedException e) {
-//							// TODO Auto-generated catch block
-//							e.printStackTrace();
-//						}
-////						VentanaNivel.panelCentro.removeAll();
-////						for (int i = 0; i < VentanaNivel.aBi.length; i++) {
-////							for (int j = 0; j < VentanaNivel.aBi[0].length; j++) {
-////								VentanaNivel.panelCentro.add((JLabel) VentanaNivel.aBi[i][j]);
-////							}
-////							VentanaNivel.panelCentro.updateUI();
-////						}
-//
-//
-//					}else if( VentanaNivel.cBlinky<24 && ((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
-//						choque = true;
-//						break;					
-//					}else
-//						choque  = true;
-//
-//
-//				}
-//			case 2:
-//				while(!choque) {
-//					if(VentanaNivel.cBlinky<24 && VentanaNivel.cBlinky>0 && VentanaNivel.cBlinky>0 && (((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky-1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Bolita.png"))||
-//							(((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky-1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Fondo.png"))) {
-////						Object aux2 = VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky - 1];
-////						VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky - 1] = VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky];
-////						VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky] = aux2;
-////						VentanaNivel.cBlinky--;
-////						ImageIcon im = new ImageIcon("Imagenes\\FantasmaRojo.png");
-////						im.setDescription("Imagenes\\FantasmaRojo.png");
-////						((JLabel) VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky]).setIcon(im);
-//						Icon aux2 = ((JLabel)VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky - 1]).getIcon();
-//						Icon aux1 = ((JLabel)VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky]).getIcon();
-//						((JLabel)VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky - 1]).setIcon(aux1);
-//						((JLabel)VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky]).setIcon(aux2);
-//						VentanaNivel.cBlinky--;
-//						try {
-//							Thread.sleep(500);
-//						} catch (InterruptedException e) {
-//							// TODO Auto-generated catch block
-//							e.printStackTrace();
-//						}
-////						VentanaNivel.panelCentro.removeAll();
-////						for (int i = 0; i < VentanaNivel.aBi.length; i++) {
-////							for (int j = 0; j < VentanaNivel.aBi[0].length; j++) {
-////								VentanaNivel.panelCentro.add((JLabel) VentanaNivel.aBi[i][j]);
-////							}
-////							VentanaNivel.panelCentro.updateUI();
-////						}
-//
-//					}else if( VentanaNivel.cBlinky>0 && ((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky-1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
-//						choque = true;
-//						break;
-//
-//					}else
-//						choque  = true;
-//
-//
-//				}
-//
-//			case 3:
-//				while(!choque) {
-//					if(VentanaNivel.cBlinky<24 && VentanaNivel.cBlinky>0 && VentanaNivel.cBlinky>0 && VentanaNivel.fBlinky>0 && (((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fBlinky-1][VentanaNivel.cBlinky]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Bolita.png"))||
-//							(((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky-1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Fondo.png"))) {
-////						Object aux2 = VentanaNivel.aBi[VentanaNivel.fBlinky-1][VentanaNivel.cBlinky ];
-////						VentanaNivel.aBi[VentanaNivel.fBlinky-1][VentanaNivel.cBlinky ] = VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky];
-////						VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky] = aux2;
-////						VentanaNivel.fBlinky--;
-////						ImageIcon im = new ImageIcon("Imagenes\\FantasmaRojo.png");
-////						im.setDescription("Imagenes\\FantasmaRojo.png");
-////						((JLabel) VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky]).setIcon(im);
-//						Icon aux2 = ((JLabel)VentanaNivel.aBi[VentanaNivel.fBlinky-1][VentanaNivel.cBlinky]).getIcon();
-//						Icon aux1 = ((JLabel)VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky]).getIcon();
-//						((JLabel)VentanaNivel.aBi[VentanaNivel.fBlinky-1][VentanaNivel.cBlinky]).setIcon(aux1);
-//						((JLabel)VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky]).setIcon(aux2);
-//						VentanaNivel.fBlinky--;
-//						try {
-//							Thread.sleep(500);
-//						} catch (InterruptedException e) {
-//							// TODO Auto-generated catch block
-//							e.printStackTrace();
-//						}
-////						VentanaNivel.panelCentro.removeAll();
-////						for (int i = 0; i < VentanaNivel.aBi.length; i++) {
-////							for (int j = 0; j < VentanaNivel.aBi[0].length; j++) {
-////								VentanaNivel.panelCentro.add((JLabel) VentanaNivel.aBi[i][j]);
-////							}
-////							VentanaNivel.panelCentro.updateUI();
-////						}
-//
-//					}else if(VentanaNivel.cBlinky>0 && ((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fBlinky-1][VentanaNivel.cBlinky]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
-//						choque = true;
-//						break;
-//
-//					}else
-//						choque  = true;
-//
-//				}
-//
-//
-//			case 4:
-//				while(!choque) {
-//					if(VentanaNivel.fBlinky<24 && (((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fBlinky+1][VentanaNivel.cBlinky]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Bolita.png"))||
-//							(((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fBlinky+1][VentanaNivel.cBlinky]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Fondo.png"))) {
-////						Object aux2 = VentanaNivel.aBi[VentanaNivel.fBlinky+1][VentanaNivel.cBlinky];
-////						VentanaNivel.aBi[VentanaNivel.fBlinky+1][VentanaNivel.cBlinky ] = VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky];
-////						VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky] = aux2;
-////						VentanaNivel.fBlinky++;
-////						ImageIcon im = new ImageIcon("Imagenes\\FantasmaRojo.png");
-////						im.setDescription("Imagenes\\FantasmaRojo.png");
-////						((JLabel) VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky]).setIcon(im);
-//						Icon aux2 = ((JLabel)VentanaNivel.aBi[VentanaNivel.fBlinky+1][VentanaNivel.cBlinky]).getIcon();
-//						Icon aux1 = ((JLabel)VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky]).getIcon();
-//						((JLabel)VentanaNivel.aBi[VentanaNivel.fBlinky+1][VentanaNivel.cBlinky]).setIcon(aux1);
-//						((JLabel)VentanaNivel.aBi[VentanaNivel.fBlinky][VentanaNivel.cBlinky]).setIcon(aux2);
-//						VentanaNivel.fBlinky++;
-//						try {
-//							Thread.sleep(500);
-//						} catch (InterruptedException e) {
-//							// TODO Auto-generated catch block
-//							e.printStackTrace();
-//						}
-////						VentanaNivel.panelCentro.removeAll();
-////						for (int i = 0; i < VentanaNivel.aBi.length; i++) {
-////							for (int j = 0; j < VentanaNivel.aBi[0].length; j++) {
-////								VentanaNivel.panelCentro.add((JLabel) VentanaNivel.aBi[i][j]);
-////							}
-////							VentanaNivel.panelCentro.updateUI();
-////						}
-//
-//					}else if(VentanaNivel.cBlinky<24 && ((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fBlinky+1][VentanaNivel.cBlinky]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
-//						choque = true;
-//						break;
-//
-//					}else
-//						choque  = true;
-//
-//
-//				}
-//			}
+
 		}
 
 	}
