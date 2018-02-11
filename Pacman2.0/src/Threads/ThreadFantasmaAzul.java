@@ -47,7 +47,8 @@ public class ThreadFantasmaAzul extends Thread{
 			}
 			while(!choque) {
 				 if(VentanaNivel.cInky == 23 || VentanaNivel.cInky ==1 || VentanaNivel.fInky == 1||VentanaNivel.fInky ==23) {
-					 Icon aux2 = ((JLabel)VentanaNivel.aBi[VentanaNivel.fInky+ dx][VentanaNivel.cInky + dy]).getIcon();
+					 // si la poscion del fantasma es 1 just antes de llegar al brode, avanza 1 y sale del blucle para coger nueva dir{
+					 	Icon aux2 = ((JLabel)VentanaNivel.aBi[VentanaNivel.fInky+ dx][VentanaNivel.cInky + dy]).getIcon();
 						Icon aux1 = ((JLabel)VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky]).getIcon();
 						((JLabel)VentanaNivel.aBi[VentanaNivel.fInky+ dx][VentanaNivel.cInky + dy]).setIcon(aux1);
 						((JLabel)VentanaNivel.aBi[VentanaNivel.fInky][VentanaNivel.cInky]).setIcon(aux2);
@@ -60,12 +61,6 @@ public class ThreadFantasmaAzul extends Thread{
 						}else if(dir == 4) {
 							VentanaNivel.fInky = VentanaNivel.fInky + aux3;
 						}
-						dir = 4;//abajo
-						dx = 1;
-						aux3 =1;
-						dz = 23;
-						
-						
 						
 						
 						
