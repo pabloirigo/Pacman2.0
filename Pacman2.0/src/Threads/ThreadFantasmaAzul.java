@@ -1,9 +1,14 @@
 package Threads;
 
+import java.util.ArrayList;
+
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
+import Clases.Usuario;
+import Ficheros.GestionFicheros;
 import Ventanas.VentanaNivel;
 
 public class ThreadFantasmaAzul extends Thread{
@@ -80,19 +85,25 @@ public class ThreadFantasmaAzul extends Thread{
 					VentanaNivel.fInky = VentanaNivel.fInky + aux3;
 				}
 				
-				
 				try {
-					Thread.sleep(500);
+					Thread.sleep(150);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
-
-			/*}else if((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fInky+dx][VentanaNivel.cInky+dy]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
-				System.out.println("hola mundo");
+				
+			}else if(((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fInky+dx][VentanaNivel.cInky+dy]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\PacmanConFondo.png")){
+				VentanaNivel.finPartida=true;
+				VentanaNivel.pararFantasmas();
+				String nombre = JOptionPane.showInputDialog(null ,"Introduce tu nombre:");
+				Usuario u = new Usuario (VentanaNivel.puntuacion, nombre);
+				ArrayList <Usuario> aUsuarios = GestionFicheros.volcarFicheroArrayUsuarios("USUARIOS.DAT");
+				aUsuarios.add(u);
+				GestionFicheros.volcarArrayUsuariosFichero("USUARIOS.DAT", aUsuarios);
+				
+			}else if(((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fInky+dx][VentanaNivel.cInky+dy]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
 				choque = true;
-				break;	*/				
+				break;			
 			}else
 				choque  = true;
 			}

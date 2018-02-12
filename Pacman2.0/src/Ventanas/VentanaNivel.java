@@ -44,7 +44,7 @@ public class VentanaNivel extends JFrame implements KeyListener {
 	ImageIcon imagenPacman;
 	JLabel PacmanVida1, PacmanVida2, PacmanVida3;
 	int contadorVidasPacman = 3;
-	boolean finPartida = false;
+	public static boolean finPartida = false;
 
 	public VentanaNivel(Object aBi[][]) {
 
@@ -77,6 +77,8 @@ public class VentanaNivel extends JFrame implements KeyListener {
 		panelNorte.add(PacmanVida2);
 		panelNorte.add(PacmanVida3);
 		
+		
+		
 
 		for (int i = 0; i < aBi.length; i++) {
 			for (int j = 0; j < aBi[0].length; j++) {
@@ -88,7 +90,6 @@ public class VentanaNivel extends JFrame implements KeyListener {
 					ImageIcon im2 = new ImageIcon("Imagenes\\Bolita.png");
 					im2.setDescription("Imagenes\\Bolita.png");
 					((JLabel)aBi[i][j]).setIcon(im2);
-					puntuacion+=100;
 
 				}
 
@@ -177,6 +178,7 @@ public class VentanaNivel extends JFrame implements KeyListener {
 				aBi[f][c + 1] = aBi[f][c];
 				aBi[f][c] = aux;
 				c++;
+				puntuacion+=100;
 				ImageIcon im = new ImageIcon("Imagenes\\PacmanConFondo.png");
 				im.setDescription("Imagenes\\PacmanConFondo.png");
 				((JLabel) aBi[f][c]).setIcon(im);
@@ -208,6 +210,7 @@ public class VentanaNivel extends JFrame implements KeyListener {
 				aBi[f][c - 1] = aBi[f][c];
 				aBi[f][c] = aux;
 				c--;
+				puntuacion+=100;
 				ImageIcon im = new ImageIcon("Imagenes\\PacmanIzquierda.png");
 				im.setDescription("Imagenes\\PacmanIzquierda.png");
 				((JLabel) aBi[f][c]).setIcon(im);
@@ -238,6 +241,7 @@ public class VentanaNivel extends JFrame implements KeyListener {
 				aBi[f -1][c] = aBi[f][c];
 				aBi[f][c] = aux;
 				f--;
+				puntuacion+=100;
 				ImageIcon im = new ImageIcon("Imagenes\\PacmanArriba.png");
 				im.setDescription("Imagenes\\PacmanArriba.png");
 				((JLabel) aBi[f][c]).setIcon(im);
@@ -268,6 +272,7 @@ public class VentanaNivel extends JFrame implements KeyListener {
 				aBi[f + 1][c] = aBi[f][c];
 				aBi[f][c] = aux;
 				f++;
+				puntuacion+=100;
 				ImageIcon im = new ImageIcon("Imagenes\\PacmanAbajo.png");
 				im.setDescription("Imagenes\\PacmanAbajo.png");
 				((JLabel) aBi[f][c]).setIcon(im);
@@ -295,187 +300,12 @@ public class VentanaNivel extends JFrame implements KeyListener {
 		
 	}
 	
-	public void pararFantasmas(){
+	public static void pararFantasmas(){
 		tfa.stop();
 		tfn.stop();
 		tfr.stop();
 		tfrs.stop();
 	}
-
-	
-//	public void run()  {
-//
-//		
-//		double aux = Math.random();
-//		if(aux>0 && aux <0.25) {
-//			dir =1;//derecha
-//		}else if( aux>0.25 && aux< 0.50) {
-//			dir = 2;//izquierda
-//		}else if( aux>0.50 && aux< 0.75) {
-//			dir = 3;//arriba
-//		}else if( aux>0.75 && aux< 1.0) {
-//			dir = 4;//abajo
-//		}
-//
-//		switch(dir) {
-//
-//		case 1:
-//			while(!choque) {
-//				if(c<24 && (((ImageIcon) ((JLabel) aBi[fInky][cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Bolita.png"))||
-//						(((ImageIcon) ((JLabel) aBi[fInky][cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Fondo.png"))) {
-//					Object aux2 = aBi[fInky][cInky + 1];
-//					aBi[fInky][cInky + 1] = aBi[fInky][cInky];
-//					aBi[fInky][cInky] = aux2;
-//					cInky++;
-//					ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
-//					im.setDescription("Imagenes\\FantasmaAzul.png");
-//					((JLabel) aBi[fInky][cInky]).setIcon(im);
-//					cambiarPanel();
-//
-//				}else if(((ImageIcon) ((JLabel) aBi[fInky][cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
-//					choque = true;
-//					break;
-//					
-//				}
-//				
-//			}
-//			
-//		case 2:
-//			while(!choque) {
-//				if(c<24 && (((ImageIcon) ((JLabel) aBi[fInky][cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Bolita.png"))||
-//						(((ImageIcon) ((JLabel) aBi[fInky][cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Fondo.png"))) {
-//					Object aux2 = aBi[fInky][cInky + 1];
-//					aBi[fInky][cInky + 1] = aBi[fInky][cInky];
-//					aBi[fInky][cInky] = aux2;
-//					cInky++;
-//					ImageIcon im = new ImageIcon("Imagenes\\FantasmaAzul.png");
-//					im.setDescription("Imagenes\\FantasmaAzul.png");
-//					((JLabel) aBi[fInky][cInky]).setIcon(im);
-//					cambiarPanel();
-//
-//				}else if(((ImageIcon) ((JLabel) aBi[fInky][cInky+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
-//					
-//					break;
-//				}
-//				
-//			}
-//			
-//
-//		case 3:
-//			break;
-//
-//		case 4:
-//			break;
-//		}
-		
-		/*No se ni lo que es pero igual en un futuro sirve de algo*/
-		/*switch(dir) {
-		case 1 : //mover hacia arriba
-			//while
-			if(pacman.getY()>1 && Icono.puedeAvanzar(dir,pacman.getX(),pacman.getY())== true && Icono.dentroTablero(pacman.getX(), pacman.getY())==true) {
-
-				System.out.println("Entra al while caso 1");
-				//poner la direccion del pacman cuando se mueve, tengo que hacer una excepcion para cada imgane en movimientoç	
-				int cx = pacman.getX();
-				int cy = pacman.getY();
-				System.out.println(cx+" "+cy);
-				//JLabel lblArriba = (JLabel)aBi[cx][cy-1];
-				ImageIcon im = new ImageIcon("Imagenes\\Fondo.png");
-				ImageIcon im2 = new ImageIcon("Imagenes\\PacmanConFondo.png");
-				im2.setDescription("Imagenes\\PacmanConFondo");
-				im.setDescription("Imagenes\\Fondo.png");
-				((JLabel)aBi[cx-1][cy-1]).setIcon(im2);
-				((JLabel)aBi[cx-1][cy-2]).setIcon(im);
-				repaint();
-				int y = pacman.getY() - 1;
-				pacman.setY(y);
-				for (int i = 0; i < aBi.length; i++) {			
-					for (int j = 0; j < aBi[0].length; j++) {
-						panelCentro.add((JLabel) aBi[i][j]);
-					}
-				}
-				panelCentro.updateUI();
-
-
-			}		
-			break;
-		case 2 :// mover hacia abajo
-			if(pacman.getY()<560 && Icono.puedeAvanzar(dir,pacman.getX(),pacman.getY())== true && Icono.dentroTablero(pacman.getX(), pacman.getY())==true) {
-				System.out.println("Entra al while caso 1");
-
-
-				int cx = pacman.getX();
-				int cy = pacman.getY();
-				//JLabel lblArriba = (JLabel)aBi[cx][cy-1];
-				ImageIcon im = new ImageIcon("Imagenes\\Fondo.png");
-				ImageIcon im2 = new ImageIcon("Imagenes\\PacmanConFondo.png");
-				im2.setDescription("Imagenes\\PacmanConFondo");
-				im.setDescription("Imagenes\\Fondo.png");
-				((JLabel)aBi[cx-1][cy-1]).setIcon(im2); //= new JLabel(im2);
-				((JLabel)aBi[cx-1][cy]).setIcon(im); //= new JLabel(im);
-				repaint();
-				int y = pacman.getY()+1;
-				pacman.setY(y);
-				for (int i = 0; i < aBi.length; i++) {			
-					for (int j = 0; j < aBi[0].length; j++) {
-						panelCentro.add((JLabel) aBi[i][j]);
-					}
-				}
-				panelCentro.updateUI();
-
-			}
-			break;
-		case 3 : // mover hacia derecha
-			if(pacman.getY()<560 && Icono.puedeAvanzar(dir,pacman.getX(),pacman.getY())== true && Icono.dentroTablero(pacman.getX(), pacman.getY())==true) {
-
-
-
-				int cx = pacman.getX();
-				int cy = pacman.getY();
-				//JLabel lblArriba = (JLabel)aBi[cx][cy-1];
-				ImageIcon im = new ImageIcon("Imagenes\\Fondo.png");
-				ImageIcon im2 = new ImageIcon("Imagenes\\PacmanConFondo.png");
-				im2.setDescription("Imagenes\\PacmanConFondo");
-				im.setDescription("Imagenes\\Fondo.png");
-				((JLabel)aBi[cx-1][cy-1]).setIcon(im2);// = new JLabel(im2);
-				((JLabel)aBi[cx-2][cy-1]).setIcon(im);// = new JLabel(im);
-				int x = pacman.getX()+1;
-				pacman.setX(x);
-				for (int i = 0; i < aBi.length; i++) {			
-					for (int j = 0; j < aBi[0].length; j++) {
-						panelCentro.add((JLabel) aBi[i][j]);
-					}
-				}
-				panelCentro.updateUI();
-
-			}
-			break;
-		case 4: // mover hacia izquierda
-			if(pacman.getY()<560 && Icono.puedeAvanzar(dir,pacman.getX(),pacman.getY())== true && Icono.dentroTablero(pacman.getX(), pacman.getY())==true) {
-
-
-				int cx = pacman.getX();
-				int cy = pacman.getY();
-				//JLabel lblArriba = (JLabel)aBi[cx][cy-1];
-				ImageIcon im = new ImageIcon("Imagenes\\Fondo.png");
-				ImageIcon im2 = new ImageIcon("Imagenes\\PacmanConFondo.png");
-				im2.setDescription("Imagenes\\PacmanConFondo");
-				im.setDescription("Imagenes\\Fondo.png");
-				((JLabel)aBi[cx-1][cy-1]).setIcon(im2);// = new JLabel(im2);
-				((JLabel)aBi[cx][cy-1]).setIcon(im);// = new JLabel(im);
-				int x= pacman.getX() -1;
-				pacman.setX(x);			
-				for (int i = 0; i < aBi.length; i++) {			
-					for (int j = 0; j < aBi[0].length; j++) {
-						panelCentro.add((JLabel) aBi[i][j]);
-					}
-				}
-				panelCentro.updateUI();
-
-			}
-			break;
-		}*/
-	
 		/*La idea es hacer un metodo para resetear al pacman en donde ha empezado cuando choque con un fantasma, y que  el contador de las vidas del pacman disminuya.
 		 * Y tam,bien acabar de implementar lo de la puuntuacion en la ventana scores.*/
 
