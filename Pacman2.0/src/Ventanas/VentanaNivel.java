@@ -5,8 +5,12 @@ import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Clases.Usuario;
+import Ficheros.GestionFicheros;
 import Threads.ThreadFantasmaAzul;
 import Threads.ThreadFantasmaNaranja;
 import Threads.ThreadFantasmaRojo;
@@ -17,6 +21,7 @@ import TiposDeDatos.Pacman;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.awt.FlowLayout;
 
 public class VentanaNivel extends JFrame implements KeyListener {
@@ -39,6 +44,7 @@ public class VentanaNivel extends JFrame implements KeyListener {
 	ImageIcon imagenPacman;
 	JLabel PacmanVida1, PacmanVida2, PacmanVida3;
 	int contadorVidasPacman = 3;
+	boolean finPartida = false;
 
 	public VentanaNivel(Object aBi[][]) {
 
@@ -180,6 +186,18 @@ public class VentanaNivel extends JFrame implements KeyListener {
 				cambiarPanel();
 			}else if(((ImageIcon) ((JLabel) aBi[f][c+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
 				break;
+			}else if(((ImageIcon) ((JLabel) aBi[f][c+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\FantasmaAzul.png")||
+					((ImageIcon) ((JLabel) aBi[f][c+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\FantasmaRojo.png")||
+					((ImageIcon) ((JLabel) aBi[f][c+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\FantasmaNaranja.png")||
+					((ImageIcon) ((JLabel) aBi[f][c+1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\FantasmaRosa.png")){
+				finPartida=true;
+				pararFantasmas();
+				String nombre = JOptionPane.showInputDialog(null ,"Introduce tu nombre:");
+				Usuario u = new Usuario (puntuacion, nombre);
+				ArrayList <Usuario> aUsuarios = GestionFicheros.volcarFicheroArrayUsuarios("USUARIOS.DAT");
+				aUsuarios.add(u);
+				GestionFicheros.volcarArrayUsuariosFichero("USUARIOS.DAT", aUsuarios);
+				this.dispose();		
 			}
 
 			break;	
@@ -199,6 +217,18 @@ public class VentanaNivel extends JFrame implements KeyListener {
 				cambiarPanel();
 			}else if(((ImageIcon) ((JLabel) aBi[f][c-1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
 				break;
+			}else if(((ImageIcon) ((JLabel) aBi[f][c-1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\FantasmaAzul.png")||
+					((ImageIcon) ((JLabel) aBi[f][c-1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\FantasmaRojo.png")||
+					((ImageIcon) ((JLabel) aBi[f][c-1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\FantasmaNaranja.png")||
+					((ImageIcon) ((JLabel) aBi[f][c-1]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\FantasmaRosa.png")){
+				finPartida=true;
+				pararFantasmas();
+				String nombre = JOptionPane.showInputDialog(null ,"Introduce tu nombre:");
+				Usuario u = new Usuario (puntuacion, nombre);
+				ArrayList <Usuario> aUsuarios = GestionFicheros.volcarFicheroArrayUsuarios("USUARIOS.DAT");
+				aUsuarios.add(u);
+				GestionFicheros.volcarArrayUsuariosFichero("USUARIOS.DAT", aUsuarios);
+				this.dispose();		
 			}
 			break;
 		case KeyEvent.VK_UP :	
@@ -217,6 +247,18 @@ public class VentanaNivel extends JFrame implements KeyListener {
 				cambiarPanel();
 			}else if(((ImageIcon) ((JLabel) aBi[f-1][c]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
 				break;
+			}else if(((ImageIcon) ((JLabel) aBi[f-1][c]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\FantasmaAzul.png")||
+					((ImageIcon) ((JLabel) aBi[f-1][c]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\FantasmaRojo.png")||
+					((ImageIcon) ((JLabel) aBi[f-1][c]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\FantasmaNaranja.png")||
+					((ImageIcon) ((JLabel) aBi[f-1][c]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\FantasmaRosa.png")){
+				finPartida=true;
+				pararFantasmas();
+				String nombre = JOptionPane.showInputDialog(null ,"Introduce tu nombre:");
+				Usuario u = new Usuario (puntuacion, nombre);
+				ArrayList <Usuario> aUsuarios = GestionFicheros.volcarFicheroArrayUsuarios("USUARIOS.DAT");
+				aUsuarios.add(u);
+				GestionFicheros.volcarArrayUsuariosFichero("USUARIOS.DAT", aUsuarios);
+				this.dispose();		
 			}
 			break;
 		case KeyEvent.VK_DOWN:
@@ -235,11 +277,30 @@ public class VentanaNivel extends JFrame implements KeyListener {
 				cambiarPanel();		
 			}else if(((ImageIcon) ((JLabel) aBi[f+1][c]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
 				break;
+			}else if(((ImageIcon) ((JLabel) aBi[f+1][c]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\FantasmaAzul.png")||
+					((ImageIcon) ((JLabel) aBi[f+1][c]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\FantasmaRojo.png")||
+					((ImageIcon) ((JLabel) aBi[f+1][c]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\FantasmaNaranja.png")||
+					((ImageIcon) ((JLabel) aBi[f+1][c]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\FantasmaRosa.png")){
+				finPartida=true;
+				pararFantasmas();
+				String nombre = JOptionPane.showInputDialog(null ,"Introduce tu nombre:");
+				Usuario u = new Usuario (puntuacion, nombre);
+				ArrayList <Usuario> aUsuarios = GestionFicheros.volcarFicheroArrayUsuarios("USUARIOS.DAT");
+				aUsuarios.add(u);
+				GestionFicheros.volcarArrayUsuariosFichero("USUARIOS.DAT", aUsuarios);
+				this.dispose();		
 			}
 			break;
 		}
+		
 	}
-
+	
+	public void pararFantasmas(){
+		tfa.stop();
+		tfn.stop();
+		tfr.stop();
+		tfrs.stop();
+	}
 
 	
 //	public void run()  {

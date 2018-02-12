@@ -89,7 +89,7 @@ public class ThreadFantasmaAzul extends Thread{
 				}
 
 
-			/*}else if(VentanaNivel.cInky == 24 || VentanaNivel.fInky == 1 || VentanaNivel.cInky == 0 || VentanaNivel.fInky == 24 || ((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fInky+dx][VentanaNivel.cInky+dy]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
+			/*}else if((ImageIcon) ((JLabel) VentanaNivel.aBi[VentanaNivel.fInky+dx][VentanaNivel.cInky+dy]).getIcon()).getDescription().equalsIgnoreCase("Imagenes\\Pared.png")){
 				System.out.println("hola mundo");
 				choque = true;
 				break;	*/				
